@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { FaArrowLeft, FaShoppingBag, FaHeart, FaRegHeart, FaSearch, FaTruck, FaUndo, FaLock } from 'react-icons/fa';
+import { FaArrowLeft, FaShoppingBag, FaHeart, FaRegHeart, FaTruck, FaUndo, FaLock } from 'react-icons/fa';
 import { Project } from '@/data/portfolio-demos';
 import { useState, useEffect } from 'react';
 

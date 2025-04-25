@@ -2,9 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { FaArrowLeft, FaInstagram, FaFacebook, FaPinterest, FaCamera, FaHeart, FaCalendarAlt } from 'react-icons/fa';
+import { FaArrowLeft, FaInstagram, FaFacebook, FaPinterest, FaCalendarAlt } from 'react-icons/fa';
 import { Project } from '@/data/portfolio-demos';
-import { useState } from 'react';
 
 export default function PhotographyDemoPage({ project }: { project: Project }) {
   const router = useRouter();

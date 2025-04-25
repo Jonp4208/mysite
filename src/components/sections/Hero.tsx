@@ -2,11 +2,9 @@
 
 import { motion } from 'framer-motion';
 import Button from '@/components/ui/Button';
-import { FaArrowRight, FaCheck, FaLaptop, FaMagic, FaRocket } from 'react-icons/fa';
+import { FaArrowRight, FaCheck } from 'react-icons/fa';
 import ImageBackground from './ImageBackground';
 import AnimatedText from '@/components/ui/AnimatedText';
-import AnimatedEmoji from '@/components/ui/AnimatedEmoji';
-import FunCursor from '@/components/ui/FunCursor';
 
 type HeroProps = {
   title?: string;

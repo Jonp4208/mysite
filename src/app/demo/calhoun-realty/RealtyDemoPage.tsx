@@ -2,14 +2,14 @@
 
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { FaArrowLeft, FaSearch, FaHome, FaMapMarkerAlt, FaBed, FaBath, FaRulerCombined, FaHeart, FaRegHeart } from 'react-icons/fa';
+import { FaArrowLeft, FaSearch, FaMapMarkerAlt, FaBed, FaBath, FaRulerCombined, FaHeart, FaRegHeart } from 'react-icons/fa';
 import { Project } from '@/data/portfolio-demos';
 import { useState } from 'react';
 
 export default function RealtyDemoPage({ project }: { project: Project }) {
   const router = useRouter();
   const [favorited, setFavorited] = useState(false);
-  
+
   // Sample featured properties
   const featuredProperties = [
     {
@@ -43,7 +43,7 @@ export default function RealtyDemoPage({ project }: { project: Project }) {
       image: 'https://images.unsplash.com/photo-1600585154526-990dced4db3d?q=80&w=600&auto=format&fit=crop'
     }
   ];
-  
+
   // Sample agents
   const agents = [
     {
@@ -71,7 +71,7 @@ export default function RealtyDemoPage({ project }: { project: Project }) {
       specialization: 'Historic Homes'
     }
   ];
-  
+
   return (
     <div className="min-h-screen bg-white">
       {/* Back to Portfolio Button */}
@@ -83,7 +83,7 @@ export default function RealtyDemoPage({ project }: { project: Project }) {
           <FaArrowLeft className="mr-2" /> Back to Portfolio
         </button>
       </div>
-      
+
       {/* Hero Section */}
       <div className="relative h-screen">
         {/* Background Image */}
@@ -95,7 +95,7 @@ export default function RealtyDemoPage({ project }: { project: Project }) {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
         </div>
-        
+
         {/* Logo Only - Navigation Hidden */}
         <div className="relative z-10 container mx-auto px-4 py-6">
           <div className="flex items-center">
@@ -103,11 +103,11 @@ export default function RealtyDemoPage({ project }: { project: Project }) {
             <div className="text-blue-400 font-light text-2xl ml-2">LUXURY REALTY</div>
           </div>
         </div>
-        
+
         {/* Hero Content */}
         <div className="relative z-10 container mx-auto px-4 h-full flex items-center">
           <div className="max-w-2xl">
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -115,7 +115,7 @@ export default function RealtyDemoPage({ project }: { project: Project }) {
             >
               Find Your <br />Dream Home
             </motion.h1>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -123,9 +123,9 @@ export default function RealtyDemoPage({ project }: { project: Project }) {
             >
               Discover exceptional properties in Calhoun's most desirable neighborhoods. Experience luxury living at its finest.
             </motion.p>
-            
+
             {/* Search Bar */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
@@ -167,9 +167,9 @@ export default function RealtyDemoPage({ project }: { project: Project }) {
                 </button>
               </div>
             </motion.div>
-            
+
             <div className="flex flex-wrap gap-4">
-              <motion.button 
+              <motion.button
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
@@ -177,7 +177,7 @@ export default function RealtyDemoPage({ project }: { project: Project }) {
               >
                 View Properties <span className="ml-2">»</span>
               </motion.button>
-              <motion.button 
+              <motion.button
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.7 }}
@@ -188,7 +188,7 @@ export default function RealtyDemoPage({ project }: { project: Project }) {
             </div>
           </div>
         </div>
-        
+
         {/* Property Stats */}
         <div className="absolute bottom-12 left-0 right-0 z-10">
           <div className="container mx-auto px-4">
@@ -213,19 +213,19 @@ export default function RealtyDemoPage({ project }: { project: Project }) {
           </div>
         </div>
       </div>
-      
+
       {/* Back to Portfolio Button - Already at the top */}
-      
+
       {/* Demo Notice */}
       <div className="bg-blue-600 text-white py-3">
         <div className="container mx-auto px-4">
           <p className="text-center">
-            This is a demo website showcasing my web design capabilities for real estate businesses. 
+            This is a demo website showcasing my web design capabilities for real estate businesses.
             <a href="/contact" className="underline ml-2 font-bold">Contact me</a> to create a similar site for your business.
           </p>
         </div>
       </div>
-      
+
       {/* Featured Properties Section */}
       <div className="py-20 bg-white">
         <div className="container mx-auto px-4">
@@ -235,20 +235,20 @@ export default function RealtyDemoPage({ project }: { project: Project }) {
               Explore our handpicked selection of exceptional properties, each offering luxury, comfort, and prestige.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredProperties.map((property) => (
               <div key={property.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                 <div className="relative h-64">
-                  <img 
-                    src={property.image} 
+                  <img
+                    src={property.image}
                     alt={property.title}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-bold">
                     Featured
                   </div>
-                  <button 
+                  <button
                     className="absolute top-4 left-4 bg-white/80 p-2 rounded-full text-red-500 hover:bg-white transition-colors"
                     onClick={() => setFavorited(!favorited)}
                   >
@@ -282,7 +282,7 @@ export default function RealtyDemoPage({ project }: { project: Project }) {
               </div>
             ))}
           </div>
-          
+
           <div className="text-center mt-12">
             <button className="bg-white text-blue-600 border-2 border-blue-600 px-8 py-3 rounded-md hover:bg-blue-50 transition-colors font-bold">
               View All Properties
@@ -290,7 +290,7 @@ export default function RealtyDemoPage({ project }: { project: Project }) {
           </div>
         </div>
       </div>
-      
+
       {/* Areas Section */}
       <div className="py-20 bg-gray-100">
         <div className="container mx-auto px-4">
@@ -300,11 +300,11 @@ export default function RealtyDemoPage({ project }: { project: Project }) {
               Discover Calhoun's most prestigious neighborhoods and find the perfect location for your dream home.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="relative h-80 rounded-lg overflow-hidden group">
-              <img 
-                src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=600&auto=format&fit=crop" 
+              <img
+                src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=600&auto=format&fit=crop"
                 alt="Highland Estates"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
@@ -317,10 +317,10 @@ export default function RealtyDemoPage({ project }: { project: Project }) {
                 </button>
               </div>
             </div>
-            
+
             <div className="relative h-80 rounded-lg overflow-hidden group">
-              <img 
-                src="https://images.unsplash.com/photo-1571939228382-b2f2b585ce15?q=80&w=600&auto=format&fit=crop" 
+              <img
+                src="https://images.unsplash.com/photo-1571939228382-b2f2b585ce15?q=80&w=600&auto=format&fit=crop"
                 alt="Lakeview Heights"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
@@ -333,10 +333,10 @@ export default function RealtyDemoPage({ project }: { project: Project }) {
                 </button>
               </div>
             </div>
-            
+
             <div className="relative h-80 rounded-lg overflow-hidden group">
-              <img 
-                src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=600&auto=format&fit=crop" 
+              <img
+                src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=600&auto=format&fit=crop"
                 alt="Riverside Manor"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
@@ -352,7 +352,7 @@ export default function RealtyDemoPage({ project }: { project: Project }) {
           </div>
         </div>
       </div>
-      
+
       {/* Agents Section */}
       <div className="py-20 bg-white">
         <div className="container mx-auto px-4">
@@ -362,13 +362,13 @@ export default function RealtyDemoPage({ project }: { project: Project }) {
               Our team of experienced luxury real estate professionals is dedicated to providing exceptional service.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {agents.map((agent) => (
               <div key={agent.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                 <div className="relative h-80">
-                  <img 
-                    src={agent.image} 
+                  <img
+                    src={agent.image}
                     alt={agent.name}
                     className="w-full h-full object-cover"
                   />
@@ -389,16 +389,16 @@ export default function RealtyDemoPage({ project }: { project: Project }) {
           </div>
         </div>
       </div>
-      
+
       {/* Testimonial Section */}
       <div className="py-20 bg-gray-100">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto bg-white rounded-lg p-10 shadow-lg">
             <div className="flex flex-col md:flex-row items-center">
               <div className="md:w-1/3 mb-8 md:mb-0">
-                <img 
-                  src="https://randomuser.me/api/portraits/women/23.jpg" 
-                  alt={project.testimonial?.author} 
+                <img
+                  src="https://randomuser.me/api/portraits/women/23.jpg"
+                  alt={project.testimonial?.author}
                   className="w-32 h-32 rounded-full mx-auto border-4 border-blue-600"
                 />
               </div>
@@ -420,7 +420,7 @@ export default function RealtyDemoPage({ project }: { project: Project }) {
           </div>
         </div>
       </div>
-      
+
       {/* CTA Section */}
       <div className="bg-blue-900 py-20">
         <div className="container mx-auto px-4">
@@ -446,7 +446,7 @@ export default function RealtyDemoPage({ project }: { project: Project }) {
           </div>
         </div>
       </div>
-      
+
       {/* Footer */}
       <footer className="bg-gray-900 py-12 border-t border-gray-800">
         <div className="container mx-auto px-4">

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaEye, FaChartLine, FaDesktop, FaMobile, FaGlobe, FaClock } from 'react-icons/fa';
+import { FaEye, FaDesktop, FaMobile, FaGlobe } from 'react-icons/fa';
 
 type PageView = {
   type: string;
@@ -212,7 +212,7 @@ export default function AdminDashboard() {
                           const date = new Date(view.timestamp);
                           const formattedTime = date.toLocaleTimeString();
                           const isMobile = /mobile|android|iphone|ipad|ipod/i.test(view.userAgent.toLowerCase());
-                          
+
                           return (
                             <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
                               <td className="px-4 py-3 text-gray-900">{formattedTime}</td>

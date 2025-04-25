@@ -1,60 +1,56 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
 import { Project } from '@/data/portfolio-demos';
-import { FaArrowLeft } from 'react-icons/fa';
+
+// Import all demo pages
+import dynamic from 'next/dynamic';
+
+// Dynamically import the demo pages
+const GymDemoPage = dynamic(() => import('../iron-athletics/GymDemoPage'));
+const CarDemoPage = dynamic(() => import('../calhoun-motors/CarDemoPage'));
+const RealtyDemoPage = dynamic(() => import('../calhoun-realty/RealtyDemoPage'));
+const PhotographyDemoPage = dynamic(() => import('../eternal-moments/PhotographyDemoPage'));
+const RestaurantDemoPage = dynamic(() => import('../southern-spice/RestaurantDemoPage'));
+const RetailDemoPage = dynamic(() => import('../mountain-boutique/RetailDemoPage'));
+const PlumbingDemoPage = dynamic(() => import('../calhoun-plumbing/PlumbingDemoPage'));
 
 export default function DemoPageClient({ project }: { project: Project }) {
-  // Import the custom demo pages dynamically to avoid issues with server components
+  // Use the appropriate demo page based on the project ID
   const router = useRouter();
 
   // For the Iron Athletics project, use the custom gym demo page
   if (project.id === 'iron-athletics') {
-    // Import the GymDemoPage component
-    const GymDemoPage = require('../iron-athletics/GymDemoPage').default;
     return <GymDemoPage project={project} />;
   }
 
   // For the Calhoun Motors project, use the custom car demo page
   if (project.id === 'calhoun-motors') {
-    // Import the CarDemoPage component
-    const CarDemoPage = require('../calhoun-motors/CarDemoPage').default;
     return <CarDemoPage project={project} />;
   }
 
   // For the Calhoun Realty project, use the custom real estate demo page
   if (project.id === 'calhoun-realty') {
-    // Import the RealtyDemoPage component
-    const RealtyDemoPage = require('../calhoun-realty/RealtyDemoPage').default;
     return <RealtyDemoPage project={project} />;
   }
 
   // For the Eternal Moments Photography project, use the custom photography demo page
   if (project.id === 'eternal-moments') {
-    // Import the PhotographyDemoPage component
-    const PhotographyDemoPage = require('../eternal-moments/PhotographyDemoPage').default;
     return <PhotographyDemoPage project={project} />;
   }
 
   // For the Southern Spice Restaurant project, use the custom restaurant demo page
   if (project.id === 'southern-spice') {
-    // Import the RestaurantDemoPage component
-    const RestaurantDemoPage = require('../southern-spice/RestaurantDemoPage').default;
     return <RestaurantDemoPage project={project} />;
   }
 
   // For the Mountain Boutique project, use the custom retail demo page
   if (project.id === 'mountain-boutique') {
-    // Import the RetailDemoPage component
-    const RetailDemoPage = require('../mountain-boutique/RetailDemoPage').default;
     return <RetailDemoPage project={project} />;
   }
 
   // For the Calhoun Plumbing project, use the custom plumbing service demo page
   if (project.id === 'calhoun-plumbing') {
-    // Import the PlumbingDemoPage component
-    const PlumbingDemoPage = require('../calhoun-plumbing/PlumbingDemoPage').default;
     return <PlumbingDemoPage project={project} />;
   }
 
