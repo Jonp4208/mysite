@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  disable: process.env.NODE_ENV === 'development',
+});
+
 const nextConfig = {
   eslint: {
     // Warning: This allows production builds to successfully complete even if
@@ -10,8 +15,8 @@ const nextConfig = {
     // your project has TypeScript errors.
     ignoreBuildErrors: true,
   },
-  // Disable static 404 generation to avoid useSearchParams error
-  output: 'standalone',
+  // Disable 404 generation
+  distDir: process.env.NODE_ENV === 'production' ? '.next' : '.next',
 };
 
-export default nextConfig;
+module.exports = withPWA(nextConfig);
