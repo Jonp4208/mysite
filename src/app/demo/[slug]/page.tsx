@@ -2,7 +2,13 @@ import { projects } from '@/data/portfolio-demos';
 import { redirect } from 'next/navigation';
 import DemoPageClient from './DemoPageClient';
 
-export default function DemoPage({ params }: { params: { slug: string } }) {
+type Props = {
+  params: {
+    slug: string;
+  };
+}
+
+export default function DemoPage({ params }: Props) {
   const project = projects.find(p => p.id === params.slug);
 
   if (!project) {
