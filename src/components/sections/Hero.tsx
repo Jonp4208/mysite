@@ -9,13 +9,11 @@ import AnimatedText from '@/components/ui/AnimatedText';
 type HeroProps = {
   title?: string;
   subtitle?: string;
-  backgroundImage?: string;
 };
 
 const Hero = ({
   title = "Hi, I'm John - Web Designer in Calhoun",
-  subtitle = "I create engaging, conversion-focused websites with personality for small businesses in Georgia.",
-  backgroundImage = "/images/hero-bg.jpg",
+  subtitle = "I create engaging, conversion-focused websites with personality for small businesses in Georgia."
 }: HeroProps) => {
   const containerVariants = {
     hidden: { opacity: 0 },

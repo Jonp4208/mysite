@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { Project } from '@/data/portfolio-demos';
+import { FaArrowLeft } from 'react-icons/fa';
 
 // Import all demo pages
 import dynamic from 'next/dynamic';

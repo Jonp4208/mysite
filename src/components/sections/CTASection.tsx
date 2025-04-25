@@ -10,15 +10,13 @@ type CTASectionProps = {
   subtitle?: string;
   buttonText?: string;
   buttonLink?: string;
-  backgroundImage?: string;
 };
 
 const CTASection = ({
   title = "Ready to Talk About Your Project?",
   subtitle = "I'm just a phone call away. Let's discuss how I can help your business stand out online.",
   buttonText = "Let's Chat",
-  buttonLink = "/contact",
-  backgroundImage = "/images/cta-bg.jpg",
+  buttonLink = "/contact"
 }: CTASectionProps) => {
   return (
     <section className="relative py-20 overflow-hidden">
