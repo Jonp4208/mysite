@@ -10,6 +10,8 @@ const nextConfig = {
     // your project has TypeScript errors.
     ignoreBuildErrors: true,
   },
+  // Disable static 404 generation to avoid useSearchParams error
+  output: 'standalone',
 };
 
 export default nextConfig;
