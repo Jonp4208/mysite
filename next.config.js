@@ -6,10 +6,8 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  // Disable static generation of 404 page
-  experimental: {
-    missingSuspenseWithCSRBailout: true
-  }
+  // Use both app and pages directories
+  useFileSystemPublicRoutes: true,
 };
 
 module.exports = nextConfig;
