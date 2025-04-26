@@ -1,35 +1,44 @@
 'use client';
 
-import { useEffect } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 const Analytics = () => {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // Set mounted to true on client-side
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
     // This function will run whenever the route changes
     const handleRouteChange = (url: string) => {
       // In a real application, you would send this data to your analytics service
       // For this example, we'll just log it to the console
       console.log(`Page view: ${url}`);
-      
+
       // Track page view
       trackPageView(url);
     };
 
     // Track the initial page load
     if (pathname) {
-      const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '');
+      // Get search params from window.location instead
+      const searchParamsString = window.location.search || '';
+      const url = pathname + searchParamsString;
       handleRouteChange(url);
     }
-  }, [pathname, searchParams]);
+  }, [pathname, mounted]);
 
   // Function to track page views
   const trackPageView = (url: string) => {
     // In a real application, you would use something like Google Analytics or Plausible
     // For this example, we'll create a simple tracking mechanism
-    
+
     try {
       // Create a simple analytics event
       const analyticsData = {
@@ -43,10 +52,10 @@ const Analytics = () => {
         screenHeight: window.innerHeight,
         language: navigator.language,
       };
-      
+
       // Log the data (in a real app, you would send this to your analytics endpoint)
       console.log('Analytics data:', analyticsData);
-      
+
       // You could also store this in localStorage for a simple analytics dashboard
       const storedViews = localStorage.getItem('pageViews');
       const pageViews = storedViews ? JSON.parse(storedViews) : [];
