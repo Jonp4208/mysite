@@ -25,9 +25,9 @@ export default function Home() {
       <section id="contact" className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Get In Touch</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Get In Touch Today</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Ready to discuss your project? Fill out the form below and we'll get back to you as soon as possible.
+              Ready to discuss your project? Fill out the form below and we'll get back to you within 24 hours.
             </p>
           </div>
 
