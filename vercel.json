@@ -1,9 +1,11 @@
 {
   "buildCommand": "npm run build:custom",
-  "framework": "nextjs",
   "outputDirectory": "out",
   "routes": [
     { "handle": "filesystem" },
     { "src": "/(.*)", "status": 404, "dest": "/404.html" }
-  ]
+  ],
+  "github": {
+    "silent": true
+  }
 }

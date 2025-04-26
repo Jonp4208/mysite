@@ -8,6 +8,13 @@ type Props = {
   };
 }
 
+// Generate static params for all projects
+export function generateStaticParams() {
+  return projects.map((project) => ({
+    slug: project.id,
+  }));
+}
+
 export default function DemoPage({ params }: Props) {
   const project = projects.find(p => p.id === params.slug);
 

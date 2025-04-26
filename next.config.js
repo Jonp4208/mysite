@@ -6,7 +6,7 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  // Use server-side rendering
+  // Use static export
   output: 'export',
   // Disable image optimization for static export
   images: {
@@ -15,6 +15,16 @@ const nextConfig = {
   // Disable PWA for now
   env: {
     DISABLE_PWA: 'true'
+  },
+  // Handle redirects
+  async redirects() {
+    return [
+      {
+        source: '/portfolio',
+        destination: '/',
+        permanent: false,
+      },
+    ];
   }
 };
 
