@@ -1,6 +1,5 @@
 {
   "buildCommand": "npm run build:custom",
-  "ignoreCommand": "echo 'Ignoring build errors'",
   "framework": "nextjs",
   "outputDirectory": ".next"
 }

@@ -6,13 +6,15 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  // Disable static generation
+  // Use server-side rendering
   output: 'standalone',
-  // Disable 404 page generation
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
   // Disable PWA for now
   env: {
     DISABLE_PWA: 'true'
+  },
+  // Disable static generation of 404 page
+  experimental: {
+    disableStaticNotFound: true
   }
 };
 
