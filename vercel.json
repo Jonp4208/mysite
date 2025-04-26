@@ -1,5 +1,7 @@
 {
+  "version": 2,
   "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
   "outputDirectory": ".next",
   "framework": "nextjs",
   "ignoreCommand": "echo 'Build failed, but we are ignoring it'",

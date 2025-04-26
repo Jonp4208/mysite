@@ -6,21 +6,10 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  // Use server-side rendering instead of static export
-  output: 'standalone',
-  // Disable PWA for now
+  swcMinify: true,
+  reactStrictMode: true,
   env: {
     DISABLE_PWA: 'true'
-  },
-  // Handle redirects
-  async redirects() {
-    return [
-      {
-        source: '/portfolio',
-        destination: '/',
-        permanent: false,
-      },
-    ];
   }
 };
 
