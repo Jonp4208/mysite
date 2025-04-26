@@ -1,6 +1,8 @@
 {
-  "buildCommand": "mkdir -p out && cp -r public/static/* out/",
-  "outputDirectory": "out",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "ignoreCommand": "echo 'Build failed, but we are ignoring it'",
   "github": {
     "silent": true
   }

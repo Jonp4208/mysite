@@ -6,12 +6,8 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  // Use static export
-  output: 'export',
-  // Disable image optimization for static export
-  images: {
-    unoptimized: true,
-  },
+  // Use server-side rendering instead of static export
+  output: 'standalone',
   // Disable PWA for now
   env: {
     DISABLE_PWA: 'true'
