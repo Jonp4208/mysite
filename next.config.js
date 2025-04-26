@@ -5,11 +5,6 @@ const nextConfig = {
   },
   typescript: {
     ignoreBuildErrors: true,
-  },
-  swcMinify: true,
-  reactStrictMode: true,
-  env: {
-    DISABLE_PWA: 'true'
   }
 };
 

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vercel Configuration Instructions</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      color: #0070f3;
+    }
+    .step {
+      margin-bottom: 30px;
+      padding: 20px;
+      border: 1px solid #eaeaea;
+      border-radius: 5px;
+    }
+    .step h2 {
+      margin-top: 0;
+    }
+    code {
+      background-color: #f1f1f1;
+      padding: 2px 5px;
+      border-radius: 3px;
+    }
+    .button {
+      display: inline-block;
+      background-color: #0070f3;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+    .button:hover {
+      background-color: #0051a2;
+    }
+    img {
+      max-width: 100%;
+      border: 1px solid #eaeaea;
+      border-radius: 5px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Vercel Configuration Instructions</h1>
+  <p>It seems that Vercel is still using an old configuration. Let's configure the deployment directly through the Vercel dashboard:</p>
+
+  <div class="step">
+    <h2>Step 1: Go to the Vercel Dashboard</h2>
+    <p>First, go to the Vercel dashboard and select your project:</p>
+    <a href="https://vercel.com/dashboard" class="button" target="_blank">Open Vercel Dashboard</a>
+  </div>
+
+  <div class="step">
+    <h2>Step 2: Access Project Settings</h2>
+    <p>Click on your project, then click on the "Settings" tab at the top of the page.</p>
+  </div>
+
+  <div class="step">
+    <h2>Step 3: Configure Build & Development Settings</h2>
+    <p>In the Settings page, find and click on "Build & Development Settings" in the left sidebar.</p>
+    <p>Update the following settings:</p>
+    <ul>
+      <li><strong>Framework Preset:</strong> Next.js</li>
+      <li><strong>Build Command:</strong> next build</li>
+      <li><strong>Output Directory:</strong> .next</li>
+      <li><strong>Install Command:</strong> npm install</li>
+      <li><strong>Development Command:</strong> next dev</li>
+    </ul>
+    <p>Click "Save" when you're done.</p>
+  </div>
+
+  <div class="step">
+    <h2>Step 4: Configure Environment Variables</h2>
+    <p>In the Settings page, find and click on "Environment Variables" in the left sidebar.</p>
+    <p>Add the following environment variable:</p>
+    <ul>
+      <li><strong>Name:</strong> DISABLE_PWA</li>
+      <li><strong>Value:</strong> true</li>
+    </ul>
+    <p>Make sure to select all environments (Production, Preview, and Development).</p>
+    <p>Click "Save" when you're done.</p>
+  </div>
+
+  <div class="step">
+    <h2>Step 5: Redeploy Your Project</h2>
+    <p>Go back to the "Deployments" tab and click on the "..." menu next to your latest deployment.</p>
+    <p>Select "Redeploy" from the dropdown menu.</p>
+    <p>This will trigger a new deployment with the updated settings.</p>
+  </div>
+
+  <div class="step">
+    <h2>Alternative Approach: Use Vercel CLI</h2>
+    <p>If you prefer to deploy using the Vercel CLI, you can run the following commands:</p>
+    <ol>
+      <li>Install Vercel CLI: <code>npm install -g vercel</code></li>
+      <li>Login to Vercel: <code>vercel login</code></li>
+      <li>Deploy your project: <code>vercel --prod</code></li>
+    </ol>
+    <p>Follow the prompts to configure your project.</p>
+  </div>
+
+  <p>After following these steps, your Next.js project should deploy successfully on Vercel.</p>
+</body>
+</html>
