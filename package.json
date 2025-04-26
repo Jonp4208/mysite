@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "build:custom": "NODE_OPTIONS='--max_old_space_size=4096' next build || true",
+    "build:custom": "next build && cp public/404.html out/404.html",
     "start": "next start",
     "lint": "next lint"
   },

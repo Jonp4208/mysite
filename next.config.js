@@ -7,14 +7,14 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   // Use server-side rendering
-  output: 'standalone',
+  output: 'export',
+  // Disable image optimization for static export
+  images: {
+    unoptimized: true,
+  },
   // Disable PWA for now
   env: {
     DISABLE_PWA: 'true'
-  },
-  // Disable static generation of 404 page
-  experimental: {
-    disableStaticNotFound: true
   }
 };
 

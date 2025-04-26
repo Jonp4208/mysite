@@ -1,5 +1,9 @@
 {
   "buildCommand": "npm run build:custom",
   "framework": "nextjs",
-  "outputDirectory": ".next"
+  "outputDirectory": "out",
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "status": 404, "dest": "/404.html" }
+  ]
 }
