@@ -1,6 +1,6 @@
 'use client';
 
-import { BlogPost } from '@/data/blog-posts';
+import { BlogPost, blogPosts } from '@/data/blog-posts';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { FaCalendarAlt, FaUser, FaTag, FaFacebook, FaTwitter, FaLinkedin, FaArrowLeft } from 'react-icons/fa';
