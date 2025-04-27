@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Button from '@/components/ui/Button';
 
 type Project = {
@@ -154,11 +155,20 @@ const Portfolio = () => {
               className="group relative overflow-hidden rounded-lg shadow-lg"
             >
               <div className="relative h-64 overflow-hidden">
-                <img
-                  src={project.image || `https://source.unsplash.com/600x400/?${project.category.replace('-', ',')},website`}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+                <div className="relative w-full h-full">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    onError={(e) => {
+                      // Fallback to category-based Unsplash image if local image fails to load
+                      const target = e.target as HTMLImageElement;
+                      target.src = `https://source.unsplash.com/600x400/?${project.category.replace('-', ',')},website`;
+                    }}
+                  />
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-70"></div>
                 <div className="absolute bottom-0 left-0 p-6">
                   <h3 className="text-xl font-bold text-white mb-1">{project.title}</h3>

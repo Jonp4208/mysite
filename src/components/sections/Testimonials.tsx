@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { FaQuoteLeft, FaStar } from 'react-icons/fa';
 
 type Testimonial = {
@@ -96,11 +97,18 @@ const Testimonials = () => {
               >
                 <div className="flex flex-col md:flex-row gap-6 items-start md:items-center">
                   <div className="flex-shrink-0">
-                    <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-blue-100">
-                      <img
-                        src={testimonial.image || `https://ui-avatars.com/api/?name=${testimonial.name}&background=0D8ABC&color=fff`}
+                    <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-blue-100 relative">
+                      <Image
+                        src={testimonial.image}
                         alt={testimonial.name}
-                        className="w-full h-full object-cover"
+                        fill
+                        sizes="80px"
+                        className="object-cover"
+                        onError={(e) => {
+                          // Fallback to UI Avatars if image fails to load
+                          const target = e.target as HTMLImageElement;
+                          target.src = `https://ui-avatars.com/api/?name=${testimonial.name}&background=0D8ABC&color=fff`;
+                        }}
                       />
                     </div>
                   </div>
