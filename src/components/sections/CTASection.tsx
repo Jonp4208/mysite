@@ -59,7 +59,7 @@ const CTASection = ({
               size="lg"
               icon={<FaArrowRight />}
               iconPosition="right"
-              className="bg-white text-blue-600 hover:bg-blue-50"
+              className="bg-white text-blue-600 hover:bg-blue-50 font-bold shadow-lg px-8 py-4 text-lg"
             >
               {buttonText}
             </Button>
