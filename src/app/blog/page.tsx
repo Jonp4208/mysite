@@ -5,6 +5,7 @@ import Link from 'next/link';
 import LocalBusiness from '@/components/sections/LocalBusiness';
 import { blogPosts } from '@/data/blog-posts';
 
+export default function BlogPage() {
   // Categories for filtering
   const categories = [
     'All',
