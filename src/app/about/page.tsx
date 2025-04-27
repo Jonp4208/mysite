@@ -63,7 +63,7 @@ export default function AboutPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-xl text-blue-100 max-w-3xl mx-auto"
             >
-              Hi, I'm John Smith - a freelance web designer helping small businesses in Calhoun, Georgia succeed online.
+              Hi, I'm Jonathon Pope - a freelance web designer helping small businesses in Calhoun, Georgia succeed online.
             </motion.p>
           </div>
         </div>

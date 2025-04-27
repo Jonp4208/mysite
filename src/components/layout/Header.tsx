@@ -51,8 +51,8 @@ const Header = () => {
               transition={{ duration: 0.5 }}
               className="text-2xl font-bold text-blue-600"
             >
-              <span className={scrolled ? 'text-blue-600' : 'text-white'}>John</span>
-              <span className={`${scrolled ? 'text-gray-800' : 'text-blue-300'} ml-1`}>Smith</span>
+              <span className={scrolled ? 'text-blue-600' : 'text-white'}>Jonathon</span>
+              <span className={`${scrolled ? 'text-gray-800' : 'text-blue-300'} ml-1`}>Pope</span>
               <span className={`${scrolled ? 'text-blue-500' : 'text-blue-200'} ml-1 text-sm`}>Web Designer</span>
             </motion.div>
           </Link>

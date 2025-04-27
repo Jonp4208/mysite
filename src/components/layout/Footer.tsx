@@ -13,7 +13,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-bold mb-4">John Smith | Web Designer</h3>
+            <h3 className="text-xl font-bold mb-4">Jonathon Pope | Web Designer</h3>
             <p className="mb-4 text-gray-300">
               I create beautiful, personalized websites for small businesses in Calhoun, Georgia and surrounding areas.
             </p>
@@ -97,7 +97,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <FaEnvelope className="text-blue-400 mr-3" />
-                <a href="mailto:john@johnsmithwebdesign.com" className="text-gray-300 hover:text-blue-400 transition-colors duration-200">john@johnsmithwebdesign.com</a>
+                <a href="mailto:jonathon@calhounwebcreations.com" className="text-gray-300 hover:text-blue-400 transition-colors duration-200">jonathon@calhounwebcreations.com</a>
               </li>
             </ul>
           </div>
@@ -108,7 +108,7 @@ const Footer = () => {
       <div className="border-t border-gray-800 py-6">
         <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm mb-4 md:mb-0">
-            &copy; {currentYear} John Smith | Web Designer. All rights reserved.
+            &copy; {currentYear} Jonathon Pope | Web Designer. All rights reserved.
           </p>
           <div className="flex space-x-6">
             <Link href="/privacy-policy" className="text-gray-400 text-sm hover:text-blue-400 transition-colors duration-200">
