@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { FaCalendarAlt, FaUser, FaTag, FaFacebook, FaTwitter, FaLinkedin, FaArrowLeft } from 'react-icons/fa';
 import LocalBusiness from '@/components/sections/LocalBusiness';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export default function BlogPostClient({ post }: { post: BlogPost }) {
   // Function to convert markdown to HTML
@@ -83,7 +84,7 @@ export default function BlogPostClient({ post }: { post: BlogPost }) {
                   {/* Blog content */}
                   <div className="prose prose-lg max-w-none">
                     {post.content ? (
-                      <ReactMarkdown>{post.content}</ReactMarkdown>
+                      <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.content}</ReactMarkdown>
                     ) : (
                       <p>Content not available.</p>
                     )}
