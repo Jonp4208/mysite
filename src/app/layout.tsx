@@ -65,8 +65,7 @@ export const metadata: Metadata = {
 };
 
 // Components
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
+import ConditionalLayout from '@/components/layout/ConditionalLayout';
 import Analytics from '@/components/analytics/Analytics';
 
 export default function RootLayout({
@@ -94,11 +93,9 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <Analytics />
-        <Header />
-        <main className="flex-grow">
+        <ConditionalLayout>
           {children}
-        </main>
-        <Footer />
+        </ConditionalLayout>
       </body>
     </html>
   );

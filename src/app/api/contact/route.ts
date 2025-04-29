@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { createClient } from '@/lib/supabase';
 
 // Create a transporter object using SMTP transport
 const transporter = nodemailer.createTransport({
@@ -16,15 +17,23 @@ export async function POST(request: Request) {
   try {
     // Parse the request body
     const body = await request.json();
-    const { name, email, phone, service, message } = body;
+    const { name, email, phone, service, message, subject } = body;
 
     // Validate the required fields
-    if (!name || !email || !phone || !service || !message) {
+    if (!name || !email || !message) {
       return NextResponse.json(
-        { error: 'All fields are required' },
+        { error: 'Name, email, and message are required' },
         { status: 400 }
       );
     }
+
+    // Get IP address and page URL
+    const req = request as any; // Type assertion to access headers
+    const ip_address = req.headers.get('x-forwarded-for') ||
+                       req.headers.get('x-real-ip') ||
+                       'unknown';
+
+    const page_url = req.headers.get('referer') || undefined;
 
     // Log the submission for backup
     console.log('Contact form submission:', {
@@ -32,9 +41,46 @@ export async function POST(request: Request) {
       email,
       phone,
       service,
+      subject,
       message,
+      ip_address,
+      page_url,
       timestamp: new Date().toISOString(),
     });
+
+    // Save to Supabase
+    try {
+      const supabase = createClient();
+
+      // Save submission to database
+      const { data: submissionData, error: submissionError } = await supabase
+        .from('submissions')
+        .insert([
+          {
+            name,
+            email,
+            phone,
+            service,
+            subject,
+            message,
+            status: 'new',
+            ip_address,
+            page_url
+          }
+        ])
+        .select('id')
+        .single();
+
+      if (submissionError) {
+        console.error('Error saving submission to Supabase:', submissionError);
+        // Continue with email sending even if database save fails
+      } else {
+        console.log('Submission saved to Supabase with ID:', submissionData.id);
+      }
+    } catch (dbError) {
+      console.error('Error connecting to Supabase:', dbError);
+      // Continue with email sending even if database connection fails
+    }
 
     // Check if email credentials are configured
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
@@ -50,16 +96,23 @@ export async function POST(request: Request) {
     }
 
     // Prepare email content
+    const emailSubject = subject
+      ? `New Contact Form Submission: ${subject}`
+      : service
+        ? `New Contact Form Submission: ${service}`
+        : 'New Contact Form Submission';
+
     const mailOptions = {
       from: `"Calhoun Web Creations" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_RECIPIENT || process.env.EMAIL_USER,
       replyTo: email,
-      subject: `New Contact Form Submission: ${service}`,
+      subject: emailSubject,
       text: `
 Name: ${name}
 Email: ${email}
-Phone: ${phone}
-Service: ${service}
+Phone: ${phone || 'Not provided'}
+${service ? `Service: ${service}` : ''}
+${subject ? `Subject: ${subject}` : ''}
 Message: ${message}
 
 Submitted on: ${new Date().toLocaleString()}
@@ -78,14 +131,24 @@ Submitted on: ${new Date().toLocaleString()}
       <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Email:</td>
       <td style="padding: 10px; border-bottom: 1px solid #eee;"><a href="mailto:${email}">${email}</a></td>
     </tr>
+    ${phone ? `
     <tr>
       <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Phone:</td>
       <td style="padding: 10px; border-bottom: 1px solid #eee;">${phone}</td>
     </tr>
+    ` : ''}
+    ${service ? `
     <tr>
       <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Service:</td>
       <td style="padding: 10px; border-bottom: 1px solid #eee;">${service}</td>
     </tr>
+    ` : ''}
+    ${subject ? `
+    <tr>
+      <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Subject:</td>
+      <td style="padding: 10px; border-bottom: 1px solid #eee;">${subject}</td>
+    </tr>
+    ` : ''}
     <tr>
       <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Message:</td>
       <td style="padding: 10px; border-bottom: 1px solid #eee; white-space: pre-wrap;">${message}</td>
@@ -95,6 +158,11 @@ Submitted on: ${new Date().toLocaleString()}
   <p style="margin-top: 20px; color: #666; font-size: 14px;">
     This message was submitted on ${new Date().toLocaleString()}
   </p>
+  ${page_url ? `
+  <p style="color: #666; font-size: 14px;">
+    Submitted from: ${page_url}
+  </p>
+  ` : ''}
 </div>
       `
     };
