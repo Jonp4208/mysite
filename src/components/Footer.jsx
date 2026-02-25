@@ -14,7 +14,7 @@ const Footer = () => {
                         <div className="flex gap-4" style={{ marginTop: '1.5rem' }}>
                             <div className="flex items-center gap-2" style={{ color: 'var(--text-secondary)' }}>
                                 <Mail size={18} />
-                                <span>hello@calhounweb.com</span>
+                                <span>jonp4208@gmail.com</span>
                             </div>
                         </div>
                     </div>

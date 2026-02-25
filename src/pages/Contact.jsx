@@ -61,7 +61,7 @@ const Contact = () => {
                                     </div>
                                     <div style={{ textAlign: 'left' }}>
                                         <h3 style={{ fontSize: '1.2rem', marginBottom: '0.25rem' }}>Email Us</h3>
-                                        <p style={{ color: 'var(--text-secondary)' }}>hello@calhounweb.com</p>
+                                        <p style={{ color: 'var(--text-secondary)' }}>jonp4208@gmail.com</p>
                                     </div>
                                 </div>
 
@@ -71,7 +71,7 @@ const Contact = () => {
                                     </div>
                                     <div style={{ textAlign: 'left' }}>
                                         <h3 style={{ fontSize: '1.2rem', marginBottom: '0.25rem' }}>Call Us</h3>
-                                        <p style={{ color: 'var(--text-secondary)' }}>+1 (555) 123-4567</p>
+                                        <p style={{ color: 'var(--text-secondary)' }}>404-425-4758</p>
                                     </div>
                                 </div>
                             </div>
