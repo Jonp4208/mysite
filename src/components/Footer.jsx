@@ -1,55 +1,60 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import './Footer.css';
 
 const Footer = () => {
-    return (
-        <footer className="footer">
-            <div className="container">
-                <div className="footer-grid">
-                    <div className="footer-brand">
-                        <h2 className="text-gradient">Calhoun Web Creations</h2>
-                        <p>Empowering local businesses and e-commerce stores with premium web design and custom app development.</p>
-                        <div className="flex gap-4" style={{ marginTop: '1.5rem' }}>
-                            <div className="flex items-center gap-2" style={{ color: 'var(--text-secondary)' }}>
-                                <Mail size={18} />
-                                <span>jonp4208@gmail.com</span>
-                            </div>
-                        </div>
-                    </div>
+  const year = new Date().getFullYear();
+  return (
+    <footer className="foot">
+      <div className="container">
+        {/* CTA band */}
+        <div className="foot__cta">
+          <p className="kicker kicker--dot" style={{ color: 'var(--on-ink-soft)' }}>
+            <span>Available for new work — {year}</span>
+          </p>
+          <h2 className="foot__big">
+            Let&rsquo;s build something <em>worth&nbsp;visiting.</em>
+          </h2>
+          <Link to="/contact" className="btn btn--ghost-light btn--lg foot__cta-btn">
+            Start a project <ArrowUpRight size={18} />
+          </Link>
+        </div>
 
-                    <div className="footer-links">
-                        <h3>Quick Links</h3>
-                        <ul>
-                            <li><Link to="/" className="footer-link">Home</Link></li>
-                            <li><Link to="/services" className="footer-link">Services</Link></li>
-                            <li><Link to="/portfolio" className="footer-link">Portfolio</Link></li>
-                            <li><Link to="/contact" className="footer-link">Contact</Link></li>
-                        </ul>
-                    </div>
+        <div className="foot__rule" />
 
-                    <div className="footer-links">
-                        <h3>Services</h3>
-                        <ul>
-                            <li><Link to="/services" className="footer-link">Custom Web Design</Link></li>
-                            <li><Link to="/services" className="footer-link">E-commerce Solutions</Link></li>
-                            <li><Link to="/services" className="footer-link">iOS/Android App</Link></li>
-                            <li><Link to="/services" className="footer-link">Lead Generation</Link></li>
-                        </ul>
-                    </div>
-                </div>
+        <div className="foot__grid">
+          <div className="foot__brand">
+            <span className="foot__mark">Calhoun Web Creations</span>
+            <p className="foot__blurb">
+              A design &amp; development studio building fast, characterful websites and
+              applications for businesses that refuse to look like everyone else.
+            </p>
+          </div>
 
-                <div className="footer-bottom">
-                    <p>&copy; {new Date().getFullYear()} Calhoun Web Creations. All rights reserved.</p>
-                    <div className="flex gap-4">
-                        <Link to="#" className="footer-link">Privacy Policy</Link>
-                        <Link to="#" className="footer-link">Terms of Service</Link>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    );
+          <nav className="foot__col" aria-label="Pages">
+            <h3>Pages</h3>
+            <Link to="/">Index</Link>
+            <Link to="/services">Services</Link>
+            <Link to="/portfolio">Selected Work</Link>
+            <Link to="/contact">Contact</Link>
+          </nav>
+
+          <div className="foot__col">
+            <h3>Contact</h3>
+            <a href="mailto:jonp4208@gmail.com">jonp4208@gmail.com</a>
+            <a href="tel:+14044254758">404 · 425 · 4758</a>
+            <span className="foot__loc">Calhoun, Georgia</span>
+          </div>
+        </div>
+
+        <div className="foot__bottom">
+          <span>© {year} Calhoun Web Creations</span>
+          <span className="foot__colophon">Set in Fraunces &amp; Hanken Grotesk · Built by hand</span>
+        </div>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;

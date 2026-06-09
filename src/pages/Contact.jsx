@@ -1,169 +1,143 @@
 import React, { useState, useRef } from 'react';
-import { Mail, MapPin, Phone, Send } from 'lucide-react';
+import { ArrowUpRight, Check } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import SEO from '../components/SEO';
+import Reveal from '../components/Reveal';
 import './Contact.css';
 
 const Contact = () => {
-    const form = useRef();
-    const [formData, setFormData] = useState({
-        user_name: '',
-        user_email: '',
-        service: 'web-design',
-        message: ''
-    });
-    const [isSubmitted, setIsSubmitted] = useState(false);
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [errorMsg, setErrorMsg] = useState('');
+  const form = useRef();
+  const [formData, setFormData] = useState({ user_name: '', user_email: '', service: 'web-design', message: '' });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        setErrorMsg('');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setErrorMsg('');
 
-        emailjs.sendForm(
-            import.meta.env.VITE_EMAILJS_SERVICE_ID,
-            import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-            form.current,
-            import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-        )
-            .then((result) => {
-                setIsSubmitted(true);
-                setIsSubmitting(false);
-                setFormData({ user_name: '', user_email: '', service: 'web-design', message: '' });
-            }, (error) => {
-                console.error(error.text);
-                setErrorMsg('There was an issue sending your message. Please try again.');
-                setIsSubmitting(false);
-            });
-    };
+    emailjs
+      .sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        form.current,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        () => {
+          setIsSubmitted(true);
+          setIsSubmitting(false);
+          setFormData({ user_name: '', user_email: '', service: 'web-design', message: '' });
+        },
+        (error) => {
+          console.error(error?.text);
+          setErrorMsg('Something went wrong sending your message. Please try again, or email us directly.');
+          setIsSubmitting(false);
+        }
+      );
+  };
 
-    return (
-        <div className="contact-page">
-            <SEO
-                title="Contact Us"
-                description="Get in touch with Calhoun Web Creations for a free consultation on your web design, app development, or e-commerce project."
-            />
-            <section className="section-padding" style={{ paddingTop: '8rem' }}>
-                <div className="container">
-                    <div className="grid contact-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }}>
+  const set = (k) => (e) => setFormData({ ...formData, [k]: e.target.value });
 
-                        <div className="contact-info animate-fade-up">
-                            <h1 className="text-gradient" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '1rem' }}>Let's Work Together</h1>
-                            <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', marginBottom: '3rem' }}>
-                                Fill out the form and our team will get back to you within 24 hours to schedule a free consultation.
-                            </p>
+  return (
+    <div className="contact-page">
+      <SEO
+        title="Contact"
+        description="Start a project with Calhoun Web Creations. Tell us about your web design, app development or e-commerce goals — we reply within one business day."
+      />
 
-                            <div className="contact-details" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                                <div className="flex gap-4 items-center">
-                                    <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(0, 210, 255, 0.1)', color: 'var(--accent-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                                        <Mail size={24} />
-                                    </div>
-                                    <div style={{ textAlign: 'left' }}>
-                                        <h3 style={{ fontSize: '1.2rem', marginBottom: '0.25rem' }}>Email Us</h3>
-                                        <p style={{ color: 'var(--text-secondary)' }}>jonp4208@gmail.com</p>
-                                    </div>
-                                </div>
+      <section className="phead section--tight">
+        <div className="container">
+          <div className="contact__grid">
+            {/* LEFT — statement + details */}
+            <Reveal>
+              <p className="kicker kicker--dot"><span>Start a project</span></p>
+              <h1 className="contact__title">Tell us what you&rsquo;re <em>building.</em></h1>
+              <p className="contact__lead">
+                Tell us where you&rsquo;re headed. We reply within one business day to set up
+                a free, no-pressure consultation.
+              </p>
 
-                                <div className="flex gap-4 items-center">
-                                    <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(155, 81, 224, 0.1)', color: 'var(--accent-purple)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                                        <Phone size={24} />
-                                    </div>
-                                    <div style={{ textAlign: 'left' }}>
-                                        <h3 style={{ fontSize: '1.2rem', marginBottom: '0.25rem' }}>Call Us</h3>
-                                        <p style={{ color: 'var(--text-secondary)' }}>404-425-4758</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="card form-container animate-fade-up delay-100">
-                            {isSubmitted ? (
-                                <div className="text-center" style={{ padding: '3rem 0' }}>
-                                    <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'rgba(0, 210, 255, 0.1)', color: 'var(--accent-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 2rem' }}>
-                                        <Send size={40} />
-                                    </div>
-                                    <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Message Sent!</h2>
-                                    <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>We'll be in touch shortly to discuss your project.</p>
-                                    <button className="btn btn-secondary" onClick={() => setIsSubmitted(false)}>Send Another Message</button>
-                                </div>
-                            ) : (
-                                <form ref={form} onSubmit={handleSubmit} className="contact-form" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                                    {errorMsg && (
-                                        <div style={{ padding: '1rem', background: 'rgba(255,50,50,0.1)', border: '1px solid rgba(255,50,50,0.3)', borderRadius: 'var(--radius-md)', color: '#ff8a8a', textAlign: 'center' }}>
-                                            {errorMsg}
-                                        </div>
-                                    )}
-                                    <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                                        <label htmlFor="user_name" style={{ fontWeight: '500' }}>Your Name</label>
-                                        <input
-                                            type="text"
-                                            id="user_name"
-                                            name="user_name"
-                                            required
-                                            value={formData.user_name}
-                                            onChange={(e) => setFormData({ ...formData, user_name: e.target.value })}
-                                            style={{ padding: '1rem', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 'var(--radius-md)', color: '#fff', outline: 'none' }}
-                                            placeholder="John Doe"
-                                        />
-                                    </div>
-
-                                    <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                                        <label htmlFor="user_email" style={{ fontWeight: '500' }}>Email Address</label>
-                                        <input
-                                            type="email"
-                                            id="user_email"
-                                            name="user_email"
-                                            required
-                                            value={formData.user_email}
-                                            onChange={(e) => setFormData({ ...formData, user_email: e.target.value })}
-                                            style={{ padding: '1rem', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 'var(--radius-md)', color: '#fff', outline: 'none' }}
-                                            placeholder="john@example.com"
-                                        />
-                                    </div>
-
-                                    <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                                        <label htmlFor="service" style={{ fontWeight: '500' }}>Service of Interest</label>
-                                        <select
-                                            id="service"
-                                            name="service"
-                                            value={formData.service}
-                                            onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                                            style={{ padding: '1rem', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 'var(--radius-md)', color: '#fff', outline: 'none', appearance: 'none' }}
-                                        >
-                                            <option value="web-design">Custom Web Design</option>
-                                            <option value="ecommerce">E-commerce Solution</option>
-                                            <option value="app-dev">App Development</option>
-                                            <option value="other">Other</option>
-                                        </select>
-                                    </div>
-
-                                    <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                                        <label htmlFor="message" style={{ fontWeight: '500' }}>Project Details</label>
-                                        <textarea
-                                            id="message"
-                                            name="message"
-                                            required
-                                            rows="4"
-                                            value={formData.message}
-                                            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                            style={{ padding: '1rem', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 'var(--radius-md)', color: '#fff', outline: 'none', resize: 'vertical' }}
-                                            placeholder="Tell us about your goals..."
-                                        ></textarea>
-                                    </div>
-
-                                    <button type="submit" className="btn btn-primary" style={{ marginTop: '1rem', fontSize: '1.1rem', padding: '1rem', opacity: isSubmitting ? 0.7 : 1, cursor: isSubmitting ? 'not-allowed' : 'pointer' }} disabled={isSubmitting}>
-                                        {isSubmitting ? 'Sending...' : 'Send Message'}
-                                    </button>
-                                </form>
-                            )}
-                        </div>
-
-                    </div>
+              <dl className="contact__details">
+                <div className="contact__detail">
+                  <dt>Email</dt>
+                  <dd><a href="mailto:jonp4208@gmail.com">jonp4208@gmail.com</a></dd>
                 </div>
-            </section>
+                <div className="contact__detail">
+                  <dt>Phone</dt>
+                  <dd><a href="tel:+14044254758">404 · 425 · 4758</a></dd>
+                </div>
+                <div className="contact__detail">
+                  <dt>Studio</dt>
+                  <dd>Calhoun, Georgia</dd>
+                </div>
+                <div className="contact__detail">
+                  <dt>Hours</dt>
+                  <dd>Mon–Fri · 9–6 ET</dd>
+                </div>
+              </dl>
+            </Reveal>
+
+            {/* RIGHT — form */}
+            <Reveal delay={120}>
+              <div className="contact__form">
+                {isSubmitted ? (
+                  <div className="contact__success">
+                    <div className="contact__success-mark"><Check size={28} /></div>
+                    <h2>Message received.</h2>
+                    <p>Thanks for reaching out — we&rsquo;ll be in touch shortly to talk through your project.</p>
+                    <button className="btn btn--ghost-light" onClick={() => setIsSubmitted(false)}>Send another</button>
+                  </div>
+                ) : (
+                  <form ref={form} onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
+                    <div className="contact__form-head">
+                      <span className="kicker kicker--bare">Project brief</span>
+                      <span className="kicker kicker--bare">01 / 04</span>
+                    </div>
+
+                    {errorMsg && <div className="contact__error">{errorMsg}</div>}
+
+                    <div className="field">
+                      <label htmlFor="user_name">Your name</label>
+                      <input id="user_name" name="user_name" type="text" required
+                        value={formData.user_name} onChange={set('user_name')} placeholder="Jane Calhoun" />
+                    </div>
+
+                    <div className="field">
+                      <label htmlFor="user_email">Email address</label>
+                      <input id="user_email" name="user_email" type="email" required
+                        value={formData.user_email} onChange={set('user_email')} placeholder="jane@business.com" />
+                    </div>
+
+                    <div className="field contact__select-wrap">
+                      <label htmlFor="service">What do you need?</label>
+                      <select id="service" name="service" value={formData.service} onChange={set('service')}>
+                        <option value="web-design">Website / Interface design</option>
+                        <option value="app-dev">App / Custom software</option>
+                        <option value="ecommerce">E-commerce storefront</option>
+                        <option value="other">Something in between</option>
+                      </select>
+                    </div>
+
+                    <div className="field">
+                      <label htmlFor="message">Tell us about it</label>
+                      <textarea id="message" name="message" required rows="4"
+                        value={formData.message} onChange={set('message')} placeholder="What are you building, and what does success look like?" />
+                    </div>
+
+                    <button type="submit" className="btn btn--primary btn--lg contact__submit" disabled={isSubmitting}>
+                      {isSubmitting ? 'Sending…' : 'Send the brief'} <ArrowUpRight size={18} />
+                    </button>
+                  </form>
+                )}
+              </div>
+            </Reveal>
+          </div>
         </div>
-    );
+      </section>
+    </div>
+  );
 };
 
 export default Contact;

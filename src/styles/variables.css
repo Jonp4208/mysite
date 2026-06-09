@@ -1,42 +1,39 @@
 :root {
-  /* Colors */
-  --bg-primary: #050511;
-  --bg-secondary: #0a0a1a;
-  --bg-tertiary: #13132b;
-  --text-primary: #ffffff;
-  --text-secondary: #a0a0b5;
-  --accent-blue: #00d2ff;
-  --accent-purple: #9b51e0;
-  --accent-gradient: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-  
-  /* Typography */
-  --font-sans: 'Inter', sans-serif;
-  --font-heading: 'Outfit', sans-serif;
-  
-  /* Spacing */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 1rem;
-  --space-4: 1.5rem;
-  --space-5: 2rem;
-  --space-6: 3rem;
-  --space-8: 4rem;
-  --space-12: 6rem;
-  --space-16: 8rem;
+  /* ── Palette: warm editorial paper, deep ink, one electric accent ── */
+  --paper:        #F1EBDE;  /* warm bone canvas */
+  --paper-2:      #E8DFCD;  /* deeper section panel */
+  --paper-3:      #DED2BB;  /* hairline-warm fill */
+  --ink:          #1A1712;  /* warm near-black */
+  --ink-2:        #2C2720;  /* raised ink surface */
+  --ink-soft:     #6E655644;
+  --text:         #1A1712;
+  --text-soft:    #6B6256;  /* muted brown-grey */
+  --text-mute:    #948B7C;  /* faint captions */
+  --on-ink:       #EFE9DC;  /* text on dark ink */
+  --on-ink-soft:  #B6AB97;
 
-  /* Border Radius */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.5rem;
-  --radius-full: 9999px;
+  --vermilion:    #E5391A;  /* the single electric accent */
+  --vermilion-2:  #C72E12;  /* pressed / deeper */
+  --vermilion-ink:#FFFFFF;
 
-  /* Transitions */
-  --transition-fast: 0.15s ease-in-out;
-  --transition-normal: 0.3s ease-in-out;
-  --transition-slow: 0.5s ease-in-out;
-  
-  /* Z-index */
-  --z-nav: 100;
-  --z-modal: 1000;
+  --line:         rgba(26, 23, 18, 0.16);  /* editorial hairline */
+  --line-strong:  rgba(26, 23, 18, 0.42);
+  --line-on-ink:  rgba(239, 233, 220, 0.16);
+
+  /* ── Type ── */
+  --display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans:    'Hanken Grotesk', system-ui, sans-serif;
+  --mono:    'Space Mono', ui-monospace, monospace;
+
+  /* ── Rhythm ── */
+  --container: 1280px;
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+  --section: clamp(5rem, 12vw, 11rem);
+
+  /* ── Motion ── */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast: 0.25s var(--ease);
+  --t: 0.5s var(--ease);
+  --t-slow: 0.9s var(--ease);
 }
