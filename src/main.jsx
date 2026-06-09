@@ -1,13 +1,5 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { HelmetProvider } from 'react-helmet-async'
-import './styles/global.css'
-import App from './App.jsx'
+import { ViteReactSSG } from 'vite-react-ssg';
+import { routes } from './App.jsx';
+import './styles/global.css';
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <HelmetProvider>
-      <App />
-    </HelmetProvider>
-  </StrictMode>,
-)
+export const createRoot = ViteReactSSG({ routes });

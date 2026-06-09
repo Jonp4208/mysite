@@ -1,26 +1,45 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import { Head } from 'vite-react-ssg';
 
-const SEO = ({ title, description, name = 'Calhoun Web Creations', type = 'website' }) => {
-    return (
-        <Helmet>
-            { /* Standard metadata tags */}
-            <title>{title ? `${title} | ${name}` : name}</title>
-            <meta name='description' content={description} />
-            { /* End standard metadata tags */}
-            { /* Facebook tags */}
-            <meta property="og:type" content={type} />
-            <meta property="og:title" content={title ? `${title} | ${name}` : name} />
-            <meta property="og:description" content={description} />
-            { /* End Facebook tags */}
-            { /* Twitter tags */}
-            <meta name="twitter:creator" content={name} />
-            <meta name="twitter:card" content={type} />
-            <meta name="twitter:title" content={title ? `${title} | ${name}` : name} />
-            <meta name="twitter:description" content={description} />
-            { /* End Twitter tags */}
-        </Helmet>
-    );
+const SITE = 'https://calhounweb.com';
+
+/**
+ * Per-page document head. Rendered to static HTML at build time by
+ * vite-react-ssg, so crawlers and link-preview bots get real meta tags
+ * without executing any JavaScript.
+ */
+const SEO = ({
+  title,
+  description,
+  path = '/',
+  name = 'Calhoun Web Creations',
+  type = 'website',
+}) => {
+  const fullTitle = title ? `${title} | ${name}` : `${name} — Design & Development Studio`;
+  const url = `${SITE}${path}`;
+  const image = `${SITE}/favicon.png`;
+
+  return (
+    <Head>
+      <title>{fullTitle}</title>
+      <meta name="description" content={description} />
+      <link rel="canonical" href={url} />
+
+      {/* Open Graph */}
+      <meta property="og:type" content={type} />
+      <meta property="og:site_name" content={name} />
+      <meta property="og:title" content={fullTitle} />
+      <meta property="og:description" content={description} />
+      <meta property="og:url" content={url} />
+      <meta property="og:image" content={image} />
+
+      {/* Twitter / X */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={fullTitle} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={image} />
+    </Head>
+  );
 };
 
 export default SEO;

@@ -51,6 +51,7 @@ const Home = () => {
   return (
     <div className="home">
       <SEO
+        path="/"
         title="Design & Development Studio"
         description="Calhoun Web Creations is a design-and-development studio in Calhoun, GA crafting fast, distinctive websites, custom apps and e-commerce storefronts for businesses ready to outgrow the template."
       />

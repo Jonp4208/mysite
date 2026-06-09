@@ -43,6 +43,7 @@ const Contact = () => {
   return (
     <div className="contact-page">
       <SEO
+        path="/contact"
         title="Contact"
         description="Start a project with Calhoun Web Creations. Tell us about your web design, app development or e-commerce goals — we reply within one business day."
       />

@@ -1,38 +1,26 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import Layout from './Layout';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
 
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-};
+/**
+ * Route table consumed by vite-react-ssg. Each path is statically
+ * pre-rendered at build time, then hydrated into the same SPA on the client.
+ */
+export const routes = [
+  {
+    path: '/',
+    element: <Layout />,
+    entry: 'src/Layout.jsx',
+    children: [
+      { index: true, element: <Home /> },
+      { path: 'services', element: <Services /> },
+      { path: 'portfolio', element: <Portfolio /> },
+      { path: 'contact', element: <Contact /> },
+    ],
+  },
+];
 
-function App() {
-  return (
-    <Router>
-      <ScrollToTop />
-      <div className="flex flex-col" style={{ minHeight: '100vh' }}>
-        <Navbar />
-        <main style={{ flex: 1 }}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
-  );
-}
-
-export default App;
+export default routes;

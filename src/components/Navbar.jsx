@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Navbar.css';
 
 const links = [
@@ -12,7 +12,7 @@ const links = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const location = useLocation();
+  const close = () => setOpen(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -21,7 +21,6 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => { setOpen(false); }, [location]);
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -70,12 +69,13 @@ const Navbar = () => {
               end={l.to === '/'}
               className="nav__sheet-link"
               style={{ '--i': i }}
+              onClick={close}
             >
               <span className="nav__sheet-idx">{l.idx}</span>
               {l.label}
             </NavLink>
           ))}
-          <Link to="/contact" className="btn btn--primary btn--lg nav__sheet-cta">Start a project</Link>
+          <Link to="/contact" className="btn btn--primary btn--lg nav__sheet-cta" onClick={close}>Start a project</Link>
           <div className="nav__sheet-meta">
             <a href="mailto:jonp4208@gmail.com">jonp4208@gmail.com</a>
             <a href="tel:+14044254758">404 · 425 · 4758</a>

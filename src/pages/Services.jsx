@@ -58,6 +58,7 @@ const Services = () => {
   return (
     <div className="services-page">
       <SEO
+        path="/services"
         title="Services"
         description="Custom web design, app & software development, and high-performance e-commerce — engineered from scratch to grow your business."
       />

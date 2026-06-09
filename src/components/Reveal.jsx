@@ -11,7 +11,6 @@ const Reveal = ({ as: Tag = 'div', mask = false, delay = 0, className = '', styl
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (typeof IntersectionObserver === 'undefined') { setShown(true); return; }
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {

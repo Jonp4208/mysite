@@ -63,6 +63,7 @@ const Portfolio = () => {
   return (
     <div className="portfolio-page">
       <SEO
+        path="/portfolio"
         title="Selected Work"
         description="A look at recent Calhoun Web Creations projects — custom e-commerce storefronts, SaaS dashboards and conversion-focused corporate sites."
       />
