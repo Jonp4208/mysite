@@ -17,7 +17,7 @@ const SEO = ({
 }) => {
   const fullTitle = title ? `${title} | ${name}` : `${name} — Design & Development Studio`;
   const url = `${SITE}${path}`;
-  const image = `${SITE}/favicon.png`;
+  const image = `${SITE}/og-image.jpg`;
 
   return (
     <Head>
@@ -32,6 +32,9 @@ const SEO = ({
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
       <meta property="og:image" content={image} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content="Calhoun Web Creations — design & development studio" />
 
       {/* Twitter / X */}
       <meta name="twitter:card" content="summary_large_image" />

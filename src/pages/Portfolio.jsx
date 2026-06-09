@@ -2,9 +2,9 @@ import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import SEO from '../components/SEO';
 import Reveal from '../components/Reveal';
-import pinkLabImg from '../assets/pink_lab.png';
-import forgeTrainerImg from '../assets/forge_trainer.png';
-import ldGrowthImg from '../assets/ld_growth.png';
+import pinkLabImg from '../assets/pink_lab.jpg';
+import forgeTrainerImg from '../assets/forge_trainer.jpg';
+import ldGrowthImg from '../assets/ld_growth.jpg';
 import tnuFitnessImg from '../assets/tnu_fitness.jpeg';
 import './Portfolio.css';
 

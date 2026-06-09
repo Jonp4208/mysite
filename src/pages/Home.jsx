@@ -4,8 +4,8 @@ import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
 import Reveal from '../components/Reveal';
 import Marquee from '../components/Marquee';
-import pinkLabImg from '../assets/pink_lab.png';
-import forgeTrainerImg from '../assets/forge_trainer.png';
+import pinkLabImg from '../assets/pink_lab.jpg';
+import forgeTrainerImg from '../assets/forge_trainer.jpg';
 import './Home.css';
 
 const services = [
