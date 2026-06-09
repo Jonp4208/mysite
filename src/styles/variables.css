@@ -29,6 +29,7 @@
   --container: 1280px;
   --gutter: clamp(1.25rem, 4vw, 4rem);
   --section: clamp(5rem, 12vw, 11rem);
+  --nav-h: 90px;
 
   /* ── Motion ── */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);

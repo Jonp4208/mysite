@@ -1,7 +1,14 @@
 /* ════════════════════════════════════════════════════════════
    HERO
    ════════════════════════════════════════════════════════════ */
-.hero { padding-top: clamp(3rem, 7vw, 6rem); padding-bottom: clamp(2.5rem, 5vw, 4rem); position: relative; }
+.hero {
+  position: relative;
+  min-height: calc(100svh - var(--nav-h, 4.6rem));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: clamp(1.25rem, 3vh, 2.5rem);
+}
 .hero__meta {
   display: flex;
   justify-content: space-between;
@@ -12,7 +19,7 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-soft);
-  padding-bottom: clamp(2rem, 5vw, 4rem);
+  padding-bottom: clamp(1rem, 2.2vh, 1.75rem);
   border-bottom: 1px solid var(--line);
 }
 .hero__meta b { color: var(--vermilion); font-weight: 400; }
@@ -20,20 +27,20 @@
 .hero__title {
   font-family: var(--display);
   font-weight: 400;
-  font-size: clamp(3rem, 11.5vw, 11rem);
-  line-height: 0.92;
+  font-size: clamp(2.6rem, 8vw, 7.5rem);
+  line-height: 0.94;
   letter-spacing: -0.035em;
-  margin-top: clamp(2rem, 5vw, 3.5rem);
+  margin-top: clamp(1rem, 2.6vh, 2rem);
 }
 .hero__title em { font-style: italic; font-weight: 500; color: var(--vermilion); }
-.hero__title .indent { padding-left: clamp(0px, 14vw, 12rem); }
+.hero__title .indent { padding-left: clamp(0px, 11vw, 9rem); }
 
 .hero__lead-row {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
-  gap: 3rem;
+  gap: clamp(1.5rem, 4vw, 3rem);
   align-items: end;
-  margin-top: clamp(2.5rem, 6vw, 4.5rem);
+  margin-top: clamp(1.5rem, 3vh, 2.5rem);
 }
 .hero__lead { font-size: clamp(1.15rem, 1.7vw, 1.45rem); line-height: 1.5; color: var(--text-soft); max-width: 50ch; }
 .hero__lead strong { color: var(--ink); font-weight: 600; }
@@ -46,9 +53,9 @@
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
-  margin-top: clamp(3rem, 7vw, 5rem);
+  margin-top: clamp(1.5rem, 3.5vh, 2.75rem);
 }
-.hero__stat { background: var(--paper); padding: 1.5rem 1.6rem; }
+.hero__stat { background: var(--paper); padding: clamp(1rem, 2vh, 1.4rem) 1.6rem; }
 .hero__stat dt {
   font-family: var(--mono);
   font-size: 0.66rem;

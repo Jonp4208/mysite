@@ -66,15 +66,15 @@ const Home = () => {
 
           <h1 className="hero__title">
             <Reveal as="div" mask delay={80}><span>We design &amp; build</span></Reveal>
-            <Reveal as="div" mask delay={180}><span className="indent">websites and apps</span></Reveal>
+            <Reveal as="div" mask delay={180}><span className="indent">websites &amp; apps</span></Reveal>
             <Reveal as="div" mask delay={280}><span>that <em>mean business.</em></span></Reveal>
           </h1>
 
           <div className="hero__lead-row">
             <Reveal className="hero__lead" delay={420}>
               <strong>Calhoun Web Creations</strong> is a small studio with serious
-              craft — making fast, characterful digital experiences, from boutique
-              storefronts to custom software, for brands ready to stand out.
+              craft — fast, characterful websites, apps and storefronts for local
+              brands ready to stand out.
             </Reveal>
             <Reveal className="hero__actions" delay={520}>
               <Link to="/contact" className="btn btn--primary btn--lg">

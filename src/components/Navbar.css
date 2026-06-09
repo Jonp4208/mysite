@@ -140,6 +140,8 @@
 }
 
 @media (max-width: 880px) {
-  .nav__links, .nav__cta { display: none; }
+  /* .nav prefix raises specificity above the shared .btn rule so the
+     hide always wins regardless of stylesheet source order */
+  .nav .nav__links, .nav .nav__cta { display: none; }
   .nav__toggle { display: flex; }
 }
