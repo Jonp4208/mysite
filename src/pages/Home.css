@@ -190,6 +190,9 @@
    RESPONSIVE
    ════════════════════════════════════════════════════════════ */
 @media (max-width: 880px) {
+  /* Top-align the hero on mobile — the desktop viewport-centering leaves an
+     awkward empty band above the kicker on taller phones. */
+  .hero { min-height: auto; justify-content: flex-start; padding-top: clamp(1.25rem, 5vw, 2.25rem); padding-bottom: clamp(2rem, 8vw, 3rem); }
   .hero__lead-row, .intro__grid { grid-template-columns: 1fr; gap: 2rem; }
   .hero__title .indent { padding-left: 0; }
   .svc-row { grid-template-columns: auto 1fr; row-gap: 0.6rem; }
