@@ -89,3 +89,8 @@
 @media (max-width: 880px) {
   .contact__grid { grid-template-columns: 1fr; }
 }
+@media (max-width: 560px) {
+  /* Stack label above value so long emails/phones aren't crammed to the edge */
+  .contact__detail { flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+  .contact__detail dd { font-size: 1.15rem; word-break: break-word; }
+}
