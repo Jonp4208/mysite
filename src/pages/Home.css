@@ -47,13 +47,15 @@
 .hero__actions { display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
 .hero__actions .btn { align-self: stretch; }
 
+/* Credentials strip — lifted out of the hero to keep the hero focused */
+.statstrip { padding-block: clamp(1.75rem, 5vw, 3rem); }
+
 .hero__stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
-  margin-top: clamp(1.5rem, 3.5vh, 2.75rem);
 }
 .hero__stat { background: var(--paper); padding: clamp(1rem, 2vh, 1.4rem) 1.6rem; }
 .hero__stat dt {

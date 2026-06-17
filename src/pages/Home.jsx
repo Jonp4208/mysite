@@ -61,7 +61,6 @@ const Home = () => {
         <div className="container">
           <Reveal className="hero__meta">
             <span>( Design &amp; Development Studio )</span>
-            <span>Est. <b>—</b> Calhoun, Georgia</span>
           </Reveal>
 
           <h1 className="hero__title">
@@ -83,8 +82,13 @@ const Home = () => {
               <Link to="/portfolio" className="link">View selected work <ArrowRight size={15} /></Link>
             </Reveal>
           </div>
+        </div>
+      </section>
 
-          <Reveal as="dl" className="hero__stats" delay={120}>
+      {/* ── CREDENTIALS STRIP ────────────────────────────────── */}
+      <section className="statstrip">
+        <div className="container">
+          <Reveal as="dl" className="hero__stats">
             <div className="hero__stat"><dt>Disciplines</dt><dd>Web · Apps · Commerce</dd></div>
             <div className="hero__stat"><dt>Approach</dt><dd>Built 1-to-1, never templated</dd></div>
             <div className="hero__stat"><dt>Based in</dt><dd>Calhoun, Georgia</dd></div>
