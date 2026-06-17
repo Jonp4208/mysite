@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://calhounweb.com/sitemap.xml
+Sitemap: https://calhounwebcreations.com/sitemap.xml

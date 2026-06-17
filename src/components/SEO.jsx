@@ -1,7 +1,7 @@
 import React from 'react';
 import { Head } from 'vite-react-ssg';
 
-const SITE = 'https://calhounweb.com';
+const SITE = 'https://calhounwebcreations.com';
 
 /**
  * Per-page document head. Rendered to static HTML at build time by
