@@ -8,7 +8,7 @@
   --ink-soft:     #6E655644;
   --text:         #1A1712;
   --text-soft:    #6B6256;  /* muted brown-grey */
-  --text-mute:    #948B7C;  /* faint captions */
+  --text-mute:    #6E6558;  /* faint captions — 4.82:1 on --paper (was #948B7C at 2.83:1) */
   --on-ink:       #EFE9DC;  /* text on dark ink */
   --on-ink-soft:  #B6AB97;
 

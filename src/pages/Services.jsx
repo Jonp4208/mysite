@@ -1,79 +1,121 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Check } from 'lucide-react';
 import SEO from '../components/SEO';
 import Reveal from '../components/Reveal';
+import { PRICING, PHONE_DISPLAY, PHONE_TEL } from '../content/site';
 import './Services.css';
+
+/* PRICING.from may arrive as a number (1500) or a string ("$1,500") */
+const money = (v) => {
+  if (typeof v === 'number') return `$${v.toLocaleString('en-US')}`;
+  const s = String(v ?? '').trim();
+  return s.startsWith('$') ? s : `$${s}`;
+};
 
 const blocks = [
   {
     num: '01',
-    tagline: 'Design & Front-End',
-    title: 'Websites & Interfaces',
-    intro: 'Your digital handshake. We design and build sites that establish trust in the first second and never make a visitor wait.',
+    tagline: 'Most popular',
+    title: 'Business websites',
+    intro: 'The site people find when they Google you. It should look established, load fast on a phone, and make it easy to call, book or message you — so the visit turns into a customer.',
     feats: [
-      ['Marketing & brand sites', 'Editorial layouts with a point of view — not another template.'],
-      ['Landing pages that convert', 'Built around one clear action and the reasons to take it.'],
-      ['Responsive, mobile-first', 'Pixel-perfect from a 4-inch phone to a 40-inch display.'],
-      ['Performance & SEO baked in', 'Semantic markup, fast loads and clean foundations to rank.'],
+      ['Custom design, no templates', 'Built around your business, so you don’t look like the shop down the street.'],
+      ['Mobile-first, loads fast on a phone', 'Most of your visitors are on a phone. That’s where I design first.'],
+      ['Click-to-call, forms, booking links', 'Every page gives people an easy next step.'],
+      ['Local SEO foundations + Google Business Profile setup', 'So you show up when people nearby search for what you do.'],
     ],
   },
   {
     num: '02',
-    tagline: 'Engineering',
-    title: 'Apps & Custom Software',
-    intro: 'When an off-the-shelf tool stops fitting, we build the one that does — web apps and dashboards that carry real operational weight.',
+    tagline: 'Sell online',
+    title: 'Online stores',
+    intro: 'Take what sells in the shop and sell it online too. A store that’s simple to run day to day, with a checkout that works on a phone.',
     feats: [
-      ['Custom web applications', 'React-based software shaped around how you actually work.'],
-      ['Dashboards & internal tools', 'Turn spreadsheets and guesswork into one source of truth.'],
-      ['API & system integrations', 'Connect payments, CRMs and data — securely, reliably.'],
-      ['Progressive web apps', 'Native-feeling experiences, installable, no app store needed.'],
+      ['Easy to update products yourself', 'Add items, change prices and photos without calling me.'],
+      ['Simple checkout that works on phones', 'Fewer steps, fewer abandoned carts.'],
+      ['Payments, shipping, tax handled', 'Card payments, shipping rates and sales tax set up and tested.'],
+      ['Training so you can run it', 'A walkthrough at launch, plus notes you can come back to.'],
     ],
   },
   {
     num: '03',
-    tagline: 'Commerce',
-    title: 'E-Commerce & Storefronts',
-    intro: 'Stop losing sales to slow carts and confusing checkouts. We build retail environments engineered to reduce friction and lift order value.',
+    tagline: 'Built to spec',
+    title: 'Custom web apps & portals',
+    intro: 'When your business runs on spreadsheets, texts and three different apps, I build the one tool that does the job the way you actually work.',
     feats: [
-      ['Custom storefronts', 'Shopify, headless or fully bespoke — built for the brand.'],
-      ['Frictionless checkout', 'Fewer steps, faster pages, more completed orders.'],
-      ['Inventory & CRM sync', 'Your stock, customers and orders, always in agreement.'],
-      ['Subscriptions & tiers', 'Recurring revenue models and flexible pricing built in.'],
+      ['Member portals & booking systems', 'Log-ins, schedules, sign-ups and payments in one place.'],
+      ['Dashboards & internal tools', 'One screen for the numbers you check every day.'],
+      ['Integrations with the software you already use', 'Connects to your payment, email and scheduling tools.'],
+      ['Built to spec, documented, yours', 'You get the code, the docs and full ownership.'],
     ],
   },
 ];
 
-const faqs = [
-  { q: 'How long does a typical project take?', a: 'Most business websites run 4–6 weeks from discovery to launch. Larger e-commerce builds or custom web apps land in the 8–12 week range depending on scope and features.' },
-  { q: 'Do you offer ongoing maintenance?', a: 'Yes. We offer monthly care packages covering priority support, software updates, security monitoring and content changes so your site stays fast and safe long after launch.' },
-  { q: 'Will my site be mobile-friendly and SEO-ready?', a: 'Always. Every build is mobile-first and responsive across all devices, with foundational on-page SEO — meta tags, sitemaps, semantic HTML and fast load times — in place from day one.' },
-  { q: 'What do you build on?', a: 'We specialise in custom React (Vite / Next.js) for performance and unique functionality. For commerce we build headless Shopify storefronts or integrate payment platforms like Stripe.' },
-  { q: 'Do I own everything when we’re done?', a: 'Completely. You get clean, documented code and full ownership — no proprietary lock-in and nothing held hostage. The work is yours.' },
+const toolkit = [
+  'Logo & brand refresh', 'Copywriting', 'Photography direction', 'Google Business Profile', 'Local SEO',
+  'Analytics setup', 'Hosting & domain', 'Ongoing care plans', 'Site migrations', 'Accessibility',
+];
+
+const process = [
+  { no: '01', t: 'Quick call or message', d: 'Tell me about your business and what you need. I’ll send a fixed price and a timeline in writing.' },
+  { no: '02', t: 'Design you sign off on', d: 'You see the look of the site before anything is built, and we adjust until it feels right.' },
+  { no: '03', t: 'Build, with a preview link', d: 'Watch it come together on a private link and send feedback as we go.' },
+  { no: '04', t: 'Launch + training', d: 'I put it live, connect your domain and show you how to make updates yourself.' },
 ];
 
 const Services = () => {
   const [open, setOpen] = useState(0);
 
+  const priceList = PRICING.map((p) => `${p.name.toLowerCase()} from ${money(p.from)}`).join(', ');
+
+  const faqs = [
+    {
+      q: 'How much does a website cost?',
+      a: `It depends on what you need, but I publish starting prices so there are no surprises: ${priceList}. Every quote is a fixed price, written down before work starts, and it doesn’t change unless you add to the project.`,
+    },
+    {
+      q: 'How long does it take?',
+      a: 'A starter site is usually live in 2–3 weeks and a full business site in 4–6. Online stores and custom apps take 8–12 weeks depending on how much there is to build. I’ll give you a real date with your quote.',
+    },
+    {
+      q: 'Do I have to write the content?',
+      a: 'No. Send me what you have — a menu, a brochure, a few photos, your Facebook page — and I’ll write the pages and organise everything. You review it and tell me what to change.',
+    },
+    {
+      q: 'Will it show up on Google?',
+      a: 'Every site is built so Google can read it properly: fast loading, mobile-friendly, correct page titles and a Google Business Profile set up to match. That gets you found for local searches. Ranking for competitive terms across the whole state is a longer, ongoing job we can talk about separately.',
+    },
+    {
+      q: 'Do I own it? What about hosting?',
+      a: 'You own it outright — the design, the code and the domain are yours, and nothing is held hostage. I set up hosting in your name (usually a few dollars a month, or free for simple sites) and can look after updates on a care plan if you’d rather not think about it.',
+    },
+    {
+      q: 'Can you fix my existing site?',
+      a: 'Usually, yes. If the bones are good I’ll fix what’s broken and freshen it up. If it’s slow, dated or built on something that’s hard to work with, I’ll tell you straight and quote a rebuild instead.',
+    },
+  ];
+
   return (
     <div className="services-page">
       <SEO
         path="/services"
-        title="Services"
-        description="Custom web design, app & software development, and high-performance e-commerce — engineered from scratch to grow your business."
+        title="Web Design & Development Services · Calhoun, GA"
+        description="Business websites, online stores and custom web apps for small businesses in Calhoun, GA and North Georgia. Fixed-price quotes, launched in weeks."
       />
 
       {/* HEADER */}
       <header className="phead">
         <div className="container">
           <Reveal className="phead__top">
-            <span>( Services — What we make )</span>
-            <span>Web · Apps · Commerce</span>
+            <span>( Services — Calhoun, GA )</span>
+            <span>Websites · Stores · Web apps</span>
           </Reveal>
-          <Reveal mask className="phead__title"><h1>Built from <em>scratch.</em></h1></Reveal>
+          <Reveal mask className="phead__title"><h1>What I <em>build.</em></h1></Reveal>
           <Reveal className="phead__lead" delay={150}>
-            No drag-and-drop templates, no recycled themes. Just custom design and code,
-            shaped around your business and engineered to do the heavy lifting.
+            Websites, online stores and custom tools for small businesses in Calhoun and North
+            Georgia. I design and build everything myself, quote a fixed price up front, and
+            have you live in weeks — not months.
           </Reveal>
         </div>
       </header>
@@ -102,21 +144,62 @@ const Services = () => {
         </div>
       </section>
 
+      {/* PRICING */}
+      <section className="section pricing" id="pricing">
+        <div className="container">
+          <Reveal className="svc-head">
+            <div>
+              <p className="kicker" style={{ marginBottom: '1.25rem' }}><span>Pricing</span></p>
+              <h2 className="h-md">Straight answers on <em>price.</em></h2>
+            </div>
+            <p className="pricing__note">Every quote is fixed-price and written down before work starts.</p>
+          </Reveal>
+
+          <div className="price-grid">
+            {PRICING.map((p, i) => (
+              <Reveal key={p.name} className={`price ${p.featured ? 'price--featured' : ''}`} delay={i * 80}>
+                {p.featured && <span className="price__flag">Most popular</span>}
+                <h3 className="price__name">{p.name}</h3>
+                <p className="price__from">
+                  <span className="price__from-label">from</span>
+                  <span className="price__amount">{money(p.from)}</span>
+                </p>
+                <p className="price__blurb">{p.blurb}</p>
+                <ul className="price__list">
+                  {(p.includes || []).map((item) => (
+                    <li key={item}><Check size={16} aria-hidden="true" /><span>{item}</span></li>
+                  ))}
+                </ul>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal className="pricing__cta" delay={100}>
+            <Link to="/contact" className="btn btn--primary btn--lg">
+              Get a free quote <ArrowUpRight size={18} />
+            </Link>
+            <a href={`tel:${PHONE_TEL}`} className="link" aria-label={`Call Jonathon at ${PHONE_DISPLAY}`}>
+              or call {PHONE_DISPLAY}
+            </a>
+          </Reveal>
+        </div>
+      </section>
+
       {/* TOOLKIT STRIP */}
       <section className="section toolkit">
         <div className="container">
           <Reveal className="toolkit__grid">
             <div>
               <p className="kicker kicker--dot" style={{ color: 'var(--on-ink-soft)', marginBottom: '1.25rem' }}>
-                <span>Anything in between</span>
+                <span>Also happy to help with</span>
               </p>
               <h2>And everything <em>around</em> it.</h2>
             </div>
-            <div className="toolkit__chips">
-              {['Brand Systems', 'Logo & Identity', 'Copywriting', 'UX Research', 'SEO Strategy', 'Analytics', 'Hosting & Deploys', 'Maintenance', 'Migrations', 'Accessibility'].map((c) => (
-                <span key={c}>{c}</span>
+            <ul className="toolkit__chips" aria-label="Other services">
+              {toolkit.map((c) => (
+                <li key={c}>{c}</li>
               ))}
-            </div>
+            </ul>
           </Reveal>
         </div>
       </section>
@@ -125,16 +208,11 @@ const Services = () => {
       <section className="section">
         <div className="container">
           <Reveal className="svc-head">
-            <h2 className="h-md">How we build</h2>
-            <p className="kicker kicker--bare">Process / 01—04</p>
+            <h2 className="h-md">How it works</h2>
+            <p className="kicker kicker--bare">Four steps · 01—04</p>
           </Reveal>
           <div className="proc-grid">
-            {[
-              { no: '01', t: 'Discovery', d: 'We dig into your goals, audience and the problem actually worth solving.' },
-              { no: '02', t: 'Design', d: 'Wireframes, flows and a high-fidelity visual system you sign off on.' },
-              { no: '03', t: 'Build', d: 'Clean, scalable code with staging links so you watch it come together.' },
-              { no: '04', t: 'Launch', d: 'Rigorous QA, final tuning, and a confident deploy to the world.' },
-            ].map((p, i) => (
+            {process.map((p, i) => (
               <Reveal key={p.no} className="proc" delay={i * 80}>
                 <span className="proc__no">{p.no}</span>
                 <div className="proc__rule" />
@@ -154,18 +232,23 @@ const Services = () => {
               <p className="kicker" style={{ marginBottom: '1.5rem' }}><span>Questions</span></p>
               <h2 className="h-md" style={{ maxWidth: '12ch', marginBottom: '1.5rem' }}>Good to know.</h2>
               <p className="muted" style={{ marginBottom: '2rem', maxWidth: '32ch' }}>
-                Still wondering about something specific? Ask us directly.
+                Got a question that isn&rsquo;t here? Ask me directly — no obligation.
               </p>
-              <Link to="/contact" className="btn btn--ink">Get in touch</Link>
+              <Link to="/contact" className="btn btn--ink">Get a free quote</Link>
             </Reveal>
             <Reveal className="faq-list" delay={100}>
               {faqs.map((f, i) => (
                 <div key={i} className={`faq-item ${open === i ? 'open' : ''}`}>
-                  <button className="faq-q" onClick={() => setOpen(open === i ? -1 : i)} aria-expanded={open === i}>
+                  <button
+                    className="faq-q"
+                    onClick={() => setOpen(open === i ? -1 : i)}
+                    aria-expanded={open === i}
+                    aria-controls={`faq-a-${i}`}
+                  >
                     {f.q}
                     <span className="faq-sign" aria-hidden="true" />
                   </button>
-                  <div className="faq-a"><p>{f.a}</p></div>
+                  <div className="faq-a" id={`faq-a-${i}`}><p>{f.a}</p></div>
                 </div>
               ))}
             </Reveal>

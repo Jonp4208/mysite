@@ -1,0 +1,35 @@
+/* ════════════════════════════════════════════════════════════
+   404 — editorial "lost the trail" page
+   ════════════════════════════════════════════════════════════ */
+.nf { padding-bottom: clamp(5rem, 12vw, 11rem); }
+
+.nf__body { position: relative; }
+
+/* Giant outlined numeral sitting behind the headline, like .svc-block__num */
+.nf__numeral {
+  position: absolute;
+  right: 0;
+  top: -0.35em;
+  font-family: var(--display);
+  font-size: clamp(6rem, 16vw, 14rem);
+  opacity: 0.6;
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line-strong);
+  pointer-events: none;
+  user-select: none;
+  z-index: -1;
+}
+
+.nf__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem 2.5rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+@media (max-width: 640px) {
+  .nf__numeral { position: static; display: block; margin-top: 1.5rem; }
+}

@@ -15,7 +15,7 @@
   flex-wrap: wrap;
   gap: 1rem;
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-soft);
@@ -46,6 +46,31 @@
 .hero__lead strong { color: var(--ink); font-weight: 600; }
 .hero__actions { display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
 .hero__actions .btn { align-self: stretch; }
+/* Text links get a 44px tap area without shifting the layout; the
+   underline is pulled back up to sit under the text. */
+.home .link { padding-block: 0.8rem; margin-block: -0.8rem; }
+.home .link::after { bottom: 0.8rem; }
+/* "or call …" — a quiet second door for the people who'd rather just phone */
+.hero__call {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  margin-top: -0.5rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--text-soft);
+}
+.hero__call span {
+  color: var(--ink);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--vermilion);
+}
+.hero__call:hover span { color: var(--vermilion-2); }
 
 /* Credentials strip — lifted out of the hero to keep the hero focused */
 .statstrip { padding-block: clamp(1.75rem, 5vw, 3rem); }
@@ -60,7 +85,7 @@
 .hero__stat { background: var(--paper); padding: clamp(1rem, 2vh, 1.4rem) 1.6rem; }
 .hero__stat dt {
   font-family: var(--mono);
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-mute);
@@ -87,6 +112,7 @@
 .intro__statement em { font-style: italic; color: var(--vermilion); }
 .intro__body { display: flex; flex-direction: column; gap: 1.5rem; padding-top: 0.6rem; }
 .intro__body p { color: var(--text-soft); font-size: 1.08rem; }
+.intro__chips { margin-top: clamp(2.5rem, 5vw, 4rem); padding-top: 1.75rem; border-top: 1px solid var(--line); }
 
 /* ════════════════════════════════════════════════════════════
    SERVICES — numbered editorial list
@@ -166,7 +192,7 @@
   top: 1rem; left: 1rem;
   z-index: 2;
   font-family: var(--mono);
-  font-size: 0.64rem;
+  font-size: 0.75rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   background: var(--paper);
@@ -177,6 +203,18 @@
 .work-info .numeral { display: block; margin-bottom: 1.25rem; }
 .work-info h3 { font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -0.02em; margin-bottom: 1rem; }
 .work-info p { color: var(--text-soft); margin-bottom: 1.5rem; max-width: 46ch; font-size: 1.05rem; }
+.work-info .work-result {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+.work-result::before { content: ""; width: 1.2rem; height: 1px; background: var(--vermilion); flex-shrink: 0; }
 .work-info__tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.75rem; }
 
 /* ════════════════════════════════════════════════════════════
@@ -184,9 +222,164 @@
    ════════════════════════════════════════════════════════════ */
 .principles__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border-block: 1px solid var(--line); margin-top: 3rem; }
 .principle { background: var(--paper); padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem); }
-.principle__no { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.18em; color: var(--vermilion); margin-bottom: 1.5rem; }
+.principle__no { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.18em; color: var(--vermilion); margin-bottom: 1.5rem; }
 .principle h3 { font-size: clamp(1.5rem, 2.5vw, 2rem); letter-spacing: -0.02em; margin-bottom: 0.9rem; }
 .principle p { color: var(--text-soft); font-size: 1rem; }
+
+/* ════════════════════════════════════════════════════════════
+   TESTIMONIALS  (rendered only when real quotes exist)
+   ════════════════════════════════════════════════════════════ */
+.quotes__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-top: 3rem;
+}
+.quote { background: var(--paper); padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem); display: flex; flex-direction: column; gap: 1.75rem; }
+.quote__text {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  flex: 1;
+}
+.quote__by { display: flex; flex-direction: column; gap: 0.25rem; padding-top: 1.25rem; border-top: 1px solid var(--line); }
+.quote__name { font-weight: 600; color: var(--ink); }
+.quote__biz { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-soft); }
+
+/* ════════════════════════════════════════════════════════════
+   PLANS / PRICING — hairline grid, one card set in ink
+   ════════════════════════════════════════════════════════════ */
+.plans__title { max-width: 18ch; }
+.plans__title em { font-style: italic; font-weight: 500; color: var(--vermilion); }
+.plans__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-top: 3rem;
+}
+.plan {
+  background: var(--paper);
+  padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+}
+.plan__name {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin-bottom: 1.5rem;
+}
+.plan__from { display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 1.25rem; }
+.plan__from-label { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-soft); }
+.plan__amount { font-family: var(--display); font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 1; letter-spacing: -0.03em; color: var(--ink); }
+.plan__blurb { color: var(--text-soft); font-size: 1rem; margin-bottom: 1.75rem; }
+.plan__list { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; padding-top: 1.5rem; border-top: 1px solid var(--line); margin-top: auto; }
+.plan__list li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.98rem; color: var(--ink); line-height: 1.4; }
+.plan__list svg { flex-shrink: 0; margin-top: 0.3em; color: var(--vermilion-2); }
+
+.plan--featured { background: var(--ink); color: var(--on-ink); }
+.plan--featured .plan__name { color: var(--on-ink-soft); } /* vermilion on ink is only 4.2:1 at 12px */
+.plan--featured .plan__amount,
+.plan--featured .plan__list li { color: var(--on-ink); }
+.plan--featured .plan__from-label,
+.plan--featured .plan__blurb { color: var(--on-ink-soft); }
+.plan--featured .plan__list { border-top-color: var(--line-on-ink); }
+.plan--featured .plan__list svg { color: var(--vermilion); }
+
+.plans__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem 2rem;
+  margin-top: 2rem;
+}
+.plans__note { color: var(--text-soft); max-width: 60ch; font-size: 1rem; }
+
+/* ════════════════════════════════════════════════════════════
+   ABOUT — photo plate + first-person note
+   ════════════════════════════════════════════════════════════ */
+.about { background: var(--paper-2); }
+.about__grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+.about__photo {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  max-width: 460px;
+  overflow: hidden;
+  background: var(--paper-3);
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.4) inset;
+}
+.about__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(0.95); }
+.about__monogram {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(6rem, 18vw, 11rem);
+  letter-spacing: -0.06em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--line-strong);
+}
+.about__photo-tag {
+  position: absolute;
+  left: 1rem; bottom: 1rem;
+  z-index: 2;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--line);
+}
+.about__body .intro__statement { margin-bottom: 1.75rem; }
+.about__text { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem; max-width: 56ch; }
+.about__text p { color: var(--text-soft); font-size: 1.08rem; }
+.about__inline-link {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--vermilion);
+  overflow-wrap: anywhere;
+}
+.about__inline-link:hover { color: var(--vermilion-2); }
+
+/* ════════════════════════════════════════════════════════════
+   SERVICE AREA — hairline-separated town list
+   ════════════════════════════════════════════════════════════ */
+.area__list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.area__list li {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.9rem 1.4rem;
+  font-family: var(--display);
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  letter-spacing: -0.01em;
+  border-right: 1px solid var(--line);
+}
+.area__list li:last-child { border-right: 0; font-style: italic; color: var(--text-soft); }
 
 /* ════════════════════════════════════════════════════════════
    RESPONSIVE
@@ -203,7 +396,17 @@
   .work-row { grid-template-columns: 1fr; }
   .work-row--flip .work-plate { order: 0; }
   .principles__grid { grid-template-columns: 1fr; }
+  .plans__grid { grid-template-columns: 1fr; }
+  .plans__foot { flex-direction: column; align-items: flex-start; }
+  .plans__foot .btn { align-self: stretch; }
+  .about__grid { grid-template-columns: 1fr; gap: 2rem; }
+  .about__photo { max-width: 100%; aspect-ratio: 4 / 4; }
+  .about__body .btn { width: 100%; }
+  .area__list li { flex: 1 1 auto; justify-content: center; }
 }
 @media (max-width: 560px) {
   .hero__stats { grid-template-columns: 1fr; }
+  .chip { white-space: normal; text-align: center; }
+  .area__list { border-bottom: 0; }
+  .area__list li { flex: 1 1 100%; border-right: 0; border-bottom: 1px solid var(--line); }
 }

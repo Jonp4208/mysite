@@ -39,8 +39,9 @@
 .btn:hover svg { transform: translateX(4px); }
 
 .btn--primary {
-  background: var(--vermilion);
-  border-color: var(--vermilion);
+  /* --vermilion-2 (not --vermilion): white on #C72E12 is 5.49:1, on #E5391A only 4.26:1 */
+  background: var(--vermilion-2);
+  border-color: var(--vermilion-2);
   color: #fff;
 }
 .btn--primary::after { background: var(--ink); }
@@ -88,20 +89,46 @@
 .link:hover::after { transform: scaleX(1); transform-origin: left; }
 .link svg { transition: transform var(--t-fast); }
 .link:hover svg { transform: translate(3px, -3px); }
-.link--accent { color: var(--vermilion); }
+/* Small mono text needs the deeper vermilion: #C72E12 on paper is 4.62:1 */
+.link--accent { color: var(--vermilion-2); }
 
 /* ────────────────────────────────────────────────────────────
    TAGS / PILLS
    ──────────────────────────────────────────────────────────── */
 .tag {
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-soft);
   padding: 0.35rem 0.7rem;
   border: 1px solid var(--line);
   border-radius: 999px;
+}
+
+/* Industry / topic chips — a bordered row of plain-text labels.
+   Sized so each chip is a comfortable 44px tap target. */
+.chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.6rem 1.1rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  white-space: nowrap;
 }
 
 /* ────────────────────────────────────────────────────────────
@@ -149,7 +176,7 @@
 .field { display: flex; flex-direction: column; gap: 0.55rem; }
 .field > label {
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-soft);

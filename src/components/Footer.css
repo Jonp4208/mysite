@@ -27,12 +27,32 @@
 }
 .foot__big em { font-style: italic; font-weight: 500; color: var(--vermilion); }
 .foot__cta-btn { align-self: flex-start; }
+.foot__cta-call {
+  margin-top: 1.5rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--on-ink-soft);
+}
+.foot__cta-call a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.5rem 0.25rem;
+  color: var(--on-ink);
+  font-weight: 700;
+  transition: color var(--t-fast);
+}
+.foot__cta-call a svg { color: var(--vermilion); }
+.foot__cta-call a:hover { color: var(--vermilion); }
 
 .foot__rule { height: 1px; background: var(--line-on-ink); }
 
 .foot__grid {
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr;
+  grid-template-columns: 1.4fr 0.8fr 1fr 1.2fr;
   gap: 3rem;
   padding-block: clamp(3rem, 6vw, 5rem);
 }
@@ -63,10 +83,13 @@
   width: fit-content;
   transition: color var(--t-fast);
 }
+/* Links get a 44px tap target without changing the visual rhythm */
+.foot__col a { display: inline-flex; align-items: center; min-height: 44px; margin-block: -0.45rem; }
+.foot__area p { color: var(--on-ink-soft); font-size: 0.95rem; line-height: 1.7; max-width: 30ch; }
 .foot__col a::after {
   content: "";
   position: absolute;
-  left: 0; bottom: -2px;
+  left: 0; bottom: calc(50% - 0.8em);
   width: 100%; height: 1px;
   background: var(--vermilion);
   transform: scaleX(0);
@@ -90,6 +113,11 @@
   color: var(--on-ink-soft);
 }
 
+@media (max-width: 1000px) {
+  .foot__grid { grid-template-columns: 1fr 1fr; }
+  .foot__brand { grid-column: 1 / -1; }
+}
 @media (max-width: 760px) {
   .foot__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .foot__area p { max-width: none; }
 }

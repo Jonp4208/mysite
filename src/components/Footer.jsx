@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Phone } from 'lucide-react';
+import { OWNER, PHONE_DISPLAY, PHONE_TEL, EMAIL, CITY, SERVICE_AREA } from '../content/site';
 import './Footer.css';
 
 const Footer = () => {
@@ -11,14 +12,21 @@ const Footer = () => {
         {/* CTA band */}
         <div className="foot__cta">
           <p className="kicker kicker--dot" style={{ color: 'var(--on-ink-soft)' }}>
-            <span>Available for new work — {year}</span>
+            <span>Taking on new projects — {year}</span>
           </p>
           <h2 className="foot__big">
             Let&rsquo;s build something <em>worth&nbsp;visiting.</em>
           </h2>
           <Link to="/contact" className="btn btn--ghost-light btn--lg foot__cta-btn">
-            Start a project <ArrowUpRight size={18} />
+            Get a free quote <ArrowUpRight size={18} />
           </Link>
+          <p className="foot__cta-call">
+            or call{' '}
+            <a href={`tel:${PHONE_TEL}`} aria-label={`Call Jonathon at ${PHONE_DISPLAY}`}>
+              <Phone size={14} aria-hidden="true" />
+              {PHONE_DISPLAY}
+            </a>
+          </p>
         </div>
 
         <div className="foot__rule" />
@@ -27,24 +35,30 @@ const Footer = () => {
           <div className="foot__brand">
             <span className="foot__mark">Calhoun Web Creations</span>
             <p className="foot__blurb">
-              A design &amp; development studio building fast, characterful websites and
-              applications for businesses that refuse to look like everyone else.
+              I design and build fast, good-looking websites and web apps for small
+              businesses in Calhoun and North Georgia. One person, start to finish.
             </p>
           </div>
 
           <nav className="foot__col" aria-label="Pages">
             <h3>Pages</h3>
-            <Link to="/">Index</Link>
+            <Link to="/">Home</Link>
             <Link to="/services">Services</Link>
-            <Link to="/portfolio">Selected Work</Link>
-            <Link to="/contact">Contact</Link>
+            <Link to="/portfolio">Work</Link>
+            <Link to="/contact">Get a quote</Link>
           </nav>
 
           <div className="foot__col">
             <h3>Contact</h3>
-            <a href="mailto:jonp4208@gmail.com">jonp4208@gmail.com</a>
-            <a href="tel:+14044254758">404 · 425 · 4758</a>
-            <span className="foot__loc">Calhoun, Georgia</span>
+            <a href={`tel:${PHONE_TEL}`} aria-label={`Call Jonathon at ${PHONE_DISPLAY}`}>{PHONE_DISPLAY}</a>
+            <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+            <span className="foot__loc">{OWNER}, owner</span>
+            <span className="foot__loc">{CITY}</span>
+          </div>
+
+          <div className="foot__col foot__area">
+            <h3>Service area</h3>
+            <p>{SERVICE_AREA.join(' · ')}</p>
           </div>
         </div>
 

@@ -23,8 +23,10 @@
 }
 .contact__detail dt { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-mute); }
 .contact__detail dd { font-family: var(--display); font-size: clamp(1.1rem, 2vw, 1.5rem); letter-spacing: -0.01em; }
-.contact__detail a { transition: color var(--t-fast); }
+.contact__detail a { display: inline-block; padding-block: 0.4rem; margin-block: -0.4rem; transition: color var(--t-fast); }
 .contact__detail a:hover { color: var(--vermilion); }
+.contact__detail:first-child dd a { color: var(--vermilion); }
+.contact__detail:first-child dd a:hover { color: var(--ink); }
 
 /* Form card — a raised ink panel for contrast */
 .contact__form {
@@ -36,6 +38,11 @@
   gap: 1.75rem;
 }
 .contact__form .field > label { color: var(--on-ink-soft); }
+/* ≥44px tap targets and ≥16px text so iOS never zooms the form */
+.contact__form .field input,
+.contact__form .field select { min-height: 44px; font-size: max(1.1rem, 16px); }
+.contact__form .field textarea { font-size: max(1.1rem, 16px); }
+.contact__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem; }
 .contact__form .field input,
 .contact__form .field select,
 .contact__form .field textarea {
@@ -64,6 +71,25 @@
 }
 .contact__submit { margin-top: 0.5rem; align-self: flex-start; }
 .contact__submit:disabled { opacity: 0.6; cursor: not-allowed; }
+.contact__form-foot {
+  margin-top: -0.5rem;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--on-ink-soft);
+}
+.contact__form-foot a,
+.contact__success p a {
+  display: inline-block;
+  color: var(--on-ink);
+  font-weight: 700;
+  padding-block: 0.7rem;
+  margin-block: -0.7rem;
+  transition: color var(--t-fast);
+}
+.contact__form-foot a:hover,
+.contact__success p a:hover { color: var(--vermilion); }
 
 .contact__error {
   padding: 1rem;
@@ -88,6 +114,13 @@
 
 @media (max-width: 880px) {
   .contact__grid { grid-template-columns: 1fr; }
+  /* Form first on phones: DOM order stays intro → form for desktop,
+     but the quote form is the reason people land here */
+  .contact__form-col { order: -1; }
+  .contact__intro .contact__title { margin-top: 1.25rem; }
+}
+@media (max-width: 640px) {
+  .contact__row { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
   /* Stack label above value so long emails/phones aren't crammed to the edge */
