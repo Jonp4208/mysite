@@ -76,7 +76,7 @@ const Services = () => {
     },
     {
       q: 'How long does it take?',
-      a: 'A starter site is usually live in 2–3 weeks and a full business site in 4–6. Online stores and custom apps take 8–12 weeks depending on how much there is to build. I’ll give you a real date with your quote.',
+      a: 'A starter site is usually live in 1–2 weeks and a full business site in 3–5. Online stores and custom apps take 6–10 weeks depending on how much there is to build. I’ll give you a real date with your quote.',
     },
     {
       q: 'Do I have to write the content?',

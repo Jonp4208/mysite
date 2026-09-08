@@ -118,7 +118,7 @@ const Home = () => {
           <Reveal as="dl" className="hero__stats">
             <div className="hero__stat"><dt>Based in</dt><dd>Calhoun, Georgia</dd></div>
             <div className="hero__stat"><dt>Experience</dt><dd>{YEARS_EXPERIENCE}+ years building sites</dd></div>
-            <div className="hero__stat"><dt>Turnaround</dt><dd>Most sites live in 2–6 weeks</dd></div>
+            <div className="hero__stat"><dt>Turnaround</dt><dd>Most sites live in 1–5 weeks</dd></div>
           </Reveal>
         </div>
       </section>

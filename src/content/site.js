@@ -14,22 +14,22 @@ export const SERVICE_AREA = ['Calhoun', 'Dalton', 'Rome', 'Cartersville', 'Adair
 export const PRICING = [
   {
     name: 'Starter site',
-    from: 1500,
+    from: 500,
     blurb: 'A sharp 1–3 page site for a business that needs to look legit and get calls.',
-    includes: ['Custom design, no template', 'Mobile-first build', 'Contact form + click-to-call', 'Google Business Profile setup', 'Launched in 2–3 weeks'],
+    includes: ['Custom design, no template', 'Mobile-first build', 'Contact form + click-to-call', 'Google Business Profile setup', 'Launched in 1–2 weeks'],
   },
   {
     name: 'Business site',
-    from: 3000,
+    from: 1500,
     featured: true,
     blurb: 'The full package for an established local business that wants to rank and convert.',
-    includes: ['5–8 custom pages', 'Local SEO foundations', 'Reviews, photos & booking links', 'Speed & accessibility tuned', 'Launched in 4–6 weeks'],
+    includes: ['5–8 custom pages', 'Local SEO foundations', 'Reviews, photos & booking links', 'Speed & accessibility tuned', 'Launched in 3–5 weeks'],
   },
   {
     name: 'Store or custom app',
-    from: 6000,
+    from: 3500,
     blurb: 'Online stores, member portals, booking systems and dashboards built to spec.',
-    includes: ['E-commerce or web app', 'Payments, accounts, integrations', 'Admin tools you can actually use', 'Training + documentation', '8–12 weeks, scoped together'],
+    includes: ['E-commerce or web app', 'Payments, accounts, integrations', 'Admin tools you can actually use', 'Training + documentation', '6–10 weeks, scoped together'],
   },
 ];
 
